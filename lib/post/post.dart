@@ -19,18 +19,15 @@ class Post extends StatelessWidget {
 					),
 					new _PostContent(),
 					new _PostActionBar(),
-					//new Padding(
-					//	padding: const EdgeInsets.only(top: 20.0),
-					//	child: new Divider()
-					//)
 				]
 			),
 			decoration: new BoxDecoration(
 				color: Colors.white,
+				borderRadius: new BorderRadius.circular(5.0),
 				boxShadow: <BoxShadow>[
 					new BoxShadow(
-						color: Colors.grey[200],
-						offset: new Offset(0.0, 2.5),
+						color: const Color.fromRGBO(135, 160, 181, 0.2),
+						offset: new Offset(0.0, 3.5),
 						blurRadius: 7.0
 					)
 				]
