@@ -10,16 +10,6 @@ class Newsfeed extends StatelessWidget {
 		var timeDilation = 5.0;
 		return new Scaffold(
 			backgroundColor: const Color.fromRGBO(251,251,251,1.0),
-			floatingActionButton: new FloatingActionButton(
-				notchMargin: 30.0,
-				onPressed: () {
-					print("Fab Pressed");
-				},
-				child: new Image.asset(
-					"assets/icons/icon_plus.png",
-					color: Colors.white
-				)
-			),
 			body: new Padding(
 				padding: const EdgeInsets.only(top: 30.0),
 				child: new ListView(

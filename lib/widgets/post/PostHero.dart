@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
-import 'post-card.dart';
-import 'post.dart';
+import 'package:newsfeed_2/widgets/widgets.dart';
 
 class PostCardHero extends StatelessWidget {
 	PostCardHero({this.post});
@@ -12,7 +11,10 @@ class PostCardHero extends StatelessWidget {
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
 				return new Scaffold(
-					body: new PostHero(post: post)
+					body: new GestureDetector(
+						onTap: () => Navigator.of(context).pop(),
+						child: new Post(post: post)
+					)
 				);
 			}
 		));

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:newsfeed_2/widgets/Avatar.dart';
 import 'package:newsfeed_2/mock/mock.dart';
 import 'package:newsfeed_2/style/style.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
-import 'heart.dart';
+import 'package:newsfeed_2/widgets/widgets.dart';
 
 class Post extends StatelessWidget {
 	Post({this.post, this.hasActionBar=true});
@@ -71,11 +70,45 @@ class _PostHeader extends StatelessWidget {
 						),
 					]
 				),
-				new Image.asset(
-					"assets/icons/icon_vertical_ellipse.png",
+				new ImageButton(
+					image: vertical_ellipse,
 					color: const Color.fromRGBO(135, 160, 181, 0.7),
-					width: 35.0
-				)
+					width: 35.0,
+					onTap: () {
+						showModalBottomSheet(
+							context: context,
+							builder: (context) {
+								return new Container(
+									child: new Padding(
+										padding: const EdgeInsets.all(30.0),
+										child: new ListView(
+											children: [
+												new RaisedButton(
+													onPressed: (){
+														print("Clicked button");
+													},
+													child: new Text("Click me")
+												),
+												new RaisedButton(
+													onPressed: (){
+														print("Clicked button");
+													},
+													child: new Text("Click me")
+												),
+												new RaisedButton(
+													onPressed: (){
+														print("Clicked button");
+													},
+													child: new Text("Click me")
+												),
+											]
+										)
+									)
+								);
+							}
+						);
+					}
+				),
 			]
 		);
 	}
@@ -113,9 +146,9 @@ class _PostActionBar extends StatelessWidget {
 					style: LabelWeak
 				),
 				new Row(
-					children: <Widget>[
-						new Image.asset(
-							"assets/icons/icon_comment.png",
+					children: [
+						new ImageButton(
+							image: comment,
 							color: const Color.fromRGBO(135, 160, 181, 0.7),
 							width: 35.0
 						),
