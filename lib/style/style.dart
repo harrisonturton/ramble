@@ -13,7 +13,7 @@ var LabelWeak = new TextStyle(
 
 var LabelStrong = new TextStyle(
 	fontFamily: "Roboto",
-	fontSize: 14.0,
+	fontSize: 15.0,
 	fontWeight: FontWeight.w500,
 	color: TextDark
 );

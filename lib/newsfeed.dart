@@ -12,23 +12,20 @@ class Newsfeed extends StatelessWidget {
 		var timeDilation = 5.0;
 		return new Scaffold(
 			backgroundColor: const Color.fromRGBO(251,251,251,1.0),
-			body: new Padding(
-				padding: const EdgeInsets.only(top: 30.0),
-				child: new ListView(
-					children: <Widget>[
-						new NewPostCard(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-						newPost(),
-					]
-				)
+			body: new ListView(
+				children: <Widget>[
+					new NewPostCard(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+					newPost(),
+				]
 			)
 		);
 	}

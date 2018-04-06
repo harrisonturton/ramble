@@ -14,6 +14,7 @@ class NewPostCard extends StatelessWidget {
 							maxLines: null,
 							style: new TextStyle(
 								color: TextDark,
+								height: 1.25,
 								fontSize: 24.0,
 							),
 							decoration: new InputDecoration(
@@ -37,7 +38,13 @@ class NewPostCard extends StatelessWidget {
 					mainAxisSize: MainAxisSize.min,
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: [
-						new Text("Aa...", style: LabelWeak)
+						new Text(
+							"Aa...",
+							style: new TextStyle(
+								fontSize: 16.0,
+								color: TextLight
+							)
+						)
 					]
 				),
 				decoration: new BoxDecoration(

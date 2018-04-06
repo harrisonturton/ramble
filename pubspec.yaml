@@ -75,11 +75,21 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/roboto/Roboto-Light.ttf
           weight: 200
-        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/roboto/Roboto-Regular.ttf
           weight: 300
-        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/roboto/Roboto-Medium.ttf
           weight: 400
-        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/roboto/Roboto-Bold.ttf
+          weight: 500
+    - family: Source Sans
+      fonts:
+        - asset: assets/fonts/source_sans/SourceSansPro-Light.ttf
+          weight: 200
+        - asset: assets/fonts/source_sans/SourceSansPro-Regular.ttf
+          weight: 300
+        - asset: assets/fonts/source_sans/SourceSansPro-Semibold.ttf
+          weight: 400
+        - asset: assets/fonts/source_sans/SourceSansPro-Bold.ttf
           weight: 500
