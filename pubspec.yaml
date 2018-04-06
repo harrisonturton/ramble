@@ -32,11 +32,19 @@ flutter:
   assets:
     - assets/icons/icon_comment.png
     - assets/icons/icon_heart.png
+    - assets/icons/icon_heart_filled.png
+    - assets/icons/icon_home.png
+    - assets/icons/icon_person.png
+    - assets/icons/icon_plus.png
     - assets/icons/icon_vertical_ellipse.png
     - assets/mock/profile_pictures/profile_harry.jpg
     - assets/mock/profile_pictures/profile_robert.jpg
     - assets/mock/profile_pictures/profile_tess.jpg
     - assets/mock/profile_pictures/profile_tim.jpg
+    - assets/mock/profile_pictures/profile_cat.jpg
+    - assets/mock/profile_pictures/profile_corey.jpg
+    - assets/mock/profile_pictures/profile_albie.jpg
+    - assets/mock/profile_pictures/profile_jo.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
