@@ -62,7 +62,7 @@ class _PostHeader extends StatelessWidget {
 										style: LabelStrong
 									),
 									new Text(
-										post.location + ", " + post.timestamp,
+										"${post.location}, ${post.timestamp}",
 										style: LabelWeak
 									)
 								]
@@ -83,24 +83,20 @@ class _PostHeader extends StatelessWidget {
 										padding: const EdgeInsets.all(30.0),
 										child: new ListView(
 											children: [
-												new RaisedButton(
-													onPressed: (){
-														print("Clicked button");
-													},
-													child: new Text("Click me")
+												new Padding(
+													padding: const EdgeInsets.symmetric(vertical: 15.0),
+													child: new FlatButton(
+														onPressed: () {},
+														child: new Text("Hide this post")
+													),
 												),
-												new RaisedButton(
-													onPressed: (){
-														print("Clicked button");
-													},
-													child: new Text("Click me")
-												),
-												new RaisedButton(
-													onPressed: (){
-														print("Clicked button");
-													},
-													child: new Text("Click me")
-												),
+												new Padding(
+													padding: const EdgeInsets.symmetric(vertical: 15.0),
+													child: new FlatButton(
+														onPressed: () {},
+														child: new Text("Block ${post.author.firstName}")
+													),
+												)
 											]
 										)
 									)

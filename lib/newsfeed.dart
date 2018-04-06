@@ -14,6 +14,7 @@ class Newsfeed extends StatelessWidget {
 				padding: const EdgeInsets.only(top: 30.0),
 				child: new ListView(
 					children: <Widget>[
+						new NewPostCard(),
 						new PostCardHero(
 							post: new MockPost()
 						),
