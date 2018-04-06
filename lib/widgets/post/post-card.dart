@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
-import 'post2.dart';
+import 'post.dart';
 
 class PostCard extends StatelessWidget {
 	PostCard({this.post, this.hasActionBar=true});

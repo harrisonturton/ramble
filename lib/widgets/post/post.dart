@@ -14,7 +14,12 @@ class Post extends StatelessWidget {
 	Widget build(BuildContext context) {
 		bool notNull(Object o) => o != null;
 		return new Container(
-			padding: const EdgeInsets.all(20.0),
+			padding: const EdgeInsets.only(
+				left: 20.0,
+				right: 20.0,
+				top: 25.0,
+				bottom: 15.0
+			),
 			child: new Column(
 				mainAxisSize: MainAxisSize.min,
 				children: <Widget>[
@@ -26,7 +31,8 @@ class Post extends StatelessWidget {
 				].where(notNull).toList()
 			),
 			decoration: new BoxDecoration(
-				color: Colors.white
+				color: Colors.white,
+				borderRadius: new BorderRadius.circular(5.0),
 			)
 		);
 	}
