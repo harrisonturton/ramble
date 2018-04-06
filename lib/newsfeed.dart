@@ -5,6 +5,8 @@ import 'package:newsfeed_2/mock/mock.dart';
 
 class Newsfeed extends StatelessWidget {
 
+	Widget newPost() => new PostCardHero(post: new MockPost());
+
 	@override
 	Widget build(BuildContext context) {
 		var timeDilation = 5.0;
@@ -15,18 +17,16 @@ class Newsfeed extends StatelessWidget {
 				child: new ListView(
 					children: <Widget>[
 						new NewPostCard(),
-						new PostCardHero(
-							post: new MockPost()
-						),
-						new PostCardHero(
-							post: new MockPost()
-						),
-						new PostCardHero(
-							post: new MockPost()
-						),
-						new PostCardHero(
-							post: new MockPost()
-						),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
+						newPost(),
 					]
 				)
 			)
