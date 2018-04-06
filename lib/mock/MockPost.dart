@@ -49,7 +49,7 @@ class MockPost implements Post {
 	String timestamp;
 	String content;
 	String location;
-	List<Person> likedBy;
+	List<Person> isLikedBy;
 	List<Comment> comments;
 
 	MockPost() {
@@ -62,9 +62,9 @@ class MockPost implements Post {
 		timestamp = _timestamps[rand.nextInt(_timestamps.length)];
 		content = _content[rand.nextInt(_content.length)];
 		location = _locations[rand.nextInt(_locations.length)];
-		likedBy = [];
-		for (int i = 0; i < rand.nextInt(17); i++) {
-			likedBy.add(new MockPerson());
+		isLikedBy = [];
+		for (int i = 0; i < rand.nextInt(143); i++) {
+			isLikedBy.add(new MockPerson());
 		}
 		comments = [];
 	}

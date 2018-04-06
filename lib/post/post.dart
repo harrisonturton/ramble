@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:newsfeed_2/mock/mock.dart';
+import 'package:newsfeed_2/model/model.dart' as Model;
+import 'package:newsfeed_2/widgets/Avatar.dart';
+import 'heart.dart';
+import 'package:newsfeed_2/style/style.dart';
 
-class Post extends StatelessWidget {
+class Post extends StatefulWidget {
+	Post({Key key, this.post}) : super(key: key);
+	Model.Post post;
+
+	@override
+	createState() => new _PostState();
+}
+
+class _PostState extends State<Post> {
+
 	@override
 	Widget build(BuildContext context) {
-		MockProfile profile = new MockProfile();
 		return new Container(
 			margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
 			padding: const EdgeInsets.all(20.0),
@@ -12,12 +23,14 @@ class Post extends StatelessWidget {
 				mainAxisSize: MainAxisSize.min,
 				children: <Widget>[
 					new _PostHeader(
-						name: profile.fullName,
-						location: "ANU",
-						timestamp: "3 hours ago",
-						image: profile.image
+						name: widget.post.author.fullName,
+						location: widget.post.location,
+						timestamp: widget.post.timestamp,
+						image: widget.post.author.profilePicture
 					),
-					new _PostContent(),
+					new _PostContent(
+						content: widget.post.content
+					),
 					new _PostActionBar(),
 				]
 			),
@@ -44,9 +57,10 @@ class _PostActionBar extends StatelessWidget {
 			children: <Widget>[
 				new Text(
 					"123 Likes",
-					style: new TextStyle(
-						color: const Color.fromRGBO(135, 160, 181, 1.0),
-					)
+					style: LabelWeak,
+					//new TextStyle(
+					//	color: const Color.fromRGBO(135, 160, 181, 1.0),
+					//)
 				),
 				new Row(
 					children: <Widget>[
@@ -57,11 +71,12 @@ class _PostActionBar extends StatelessWidget {
 						),
 						new Padding(
 							padding: const EdgeInsets.only(left: 5.0),
-							child: new Image.asset(
-								"assets/icons/icon_heart.png",
-								color: const Color.fromRGBO(135, 160, 181, 0.7),
-								width: 35.0
-							),
+							child: new TappableHeart(isLiked: false),
+							//child: new Image.asset(
+							//	"assets/icons/icon_heart.png",
+							//	color: const Color.fromRGBO(135, 160, 181, 0.7),
+							//	width: 35.0
+							//),
 						)
 					]
 				)
@@ -71,18 +86,17 @@ class _PostActionBar extends StatelessWidget {
 }
 
 class _PostContent extends StatelessWidget {
+	_PostContent({this.content});
+	final String content;
+
 	@override
 	Widget build(BuildContext context) {
 		return new Padding(
 			padding: new EdgeInsets.symmetric(vertical: 15.0),
 			child: new Container(
 				child: new Text(
-					"#ANUCrush13040\nBoys who play piano so elegantly ;)",
-					style: new TextStyle(
-						color: const Color.fromRGBO(50, 67, 81, 1.0),
-						fontSize: 16.0,
-						height: 1.15
-					)
+					content,
+					style: PostBody
 				)
 			)
 		);
@@ -115,16 +129,11 @@ class _PostHeader extends StatelessWidget {
 								children: <Widget>[
 									new Text(
 										this.name,
-										style: new TextStyle(
-											fontWeight: FontWeight.bold,
-											color: const Color.fromRGBO(60,64,83,1.0),
-										)
+										style: LabelStrong
 									),
 									new Text(
 										this.location + ", " + this.timestamp,
-										style: new TextStyle(
-											color: const Color.fromRGBO(135, 160, 181, 1.0)
-										)
+										style: LabelWeak
 									),
 								]
 							)
@@ -137,31 +146,6 @@ class _PostHeader extends StatelessWidget {
 					width: 35.0
 				),
 			]
-		);
-	}
-}
-
-class Avatar extends StatelessWidget {
-	Avatar({this.backgroundImage, this.size});
-	final ImageProvider backgroundImage;
-	final double size;
-
-	@override
-	Widget build(BuildContext context) {
-		return new Container(
-			constraints: new BoxConstraints(
-				minHeight: size,
-				maxHeight: size,
-				minWidth: size,
-				maxWidth: size,
-			),
-			decoration: new BoxDecoration(
-				shape: BoxShape.circle,
-				image: new DecorationImage(
-					image: backgroundImage,
-					fit: BoxFit.cover
-				)
-			)
 		);
 	}
 }

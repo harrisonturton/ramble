@@ -20,6 +20,6 @@ class Post {
 	String timestamp;
 	String content;
 	String location;
-	List<Person> likedBy;
+	List<Person> isLikedBy;
 	List<Comment> comments;
 }
