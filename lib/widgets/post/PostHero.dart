@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
 import 'package:newsfeed_2/widgets/widgets.dart';
+import 'package:newsfeed_2/comments.dart';
 
 class PostCardHero extends StatelessWidget {
 	PostCardHero({this.post});
@@ -11,9 +12,8 @@ class PostCardHero extends StatelessWidget {
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
 				return new Scaffold(
-					body: new GestureDetector(
-						onTap: () => Navigator.of(context).pop(),
-						child: new PostHero(post: post)
+					body: new Comments(
+						post: post
 					)
 				);
 			}
@@ -27,15 +27,21 @@ class PostCardHero extends StatelessWidget {
 			onTap: () => handleTap(context),
 			child: new Hero(
 				tag: post,
-				child: new PostCard(post: post)
+				child: new PostCard(
+					post: post,
+					onCommentTap: () => handleTap(context),
+					onHeartTap: () {}
+				)
 			)
 		);
 	}
 }
 
 class PostHero extends StatelessWidget {
-	PostHero({this.post});
+	PostHero({this.post, this.onCommentTap, this.onHeartTap});
 	Model.Post post;
+	VoidCallback onCommentTap;
+	VoidCallback onHeartTap;
 
 	@override
 	void build(BuildContext context) {
@@ -44,7 +50,11 @@ class PostHero extends StatelessWidget {
 			onTap: () => Navigator.of(context).pop(),
 			child: new Hero(
 				tag: post,
-				child: new Post(post: post)
+				child: new Post(
+					post: post,
+					onCommentTap: onCommentTap,
+					onHeartTap: onHeartTap
+				)
 			)
 		);
 	}

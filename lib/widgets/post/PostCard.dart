@@ -3,9 +3,11 @@ import 'package:newsfeed_2/model/model.dart' as Model;
 import 'post.dart';
 
 class PostCard extends StatelessWidget {
-	PostCard({this.post, this.hasActionBar=true});
+	PostCard({this.post, this.hasActionBar=true, this.onCommentTap, this.onHeartTap});
 	Model.Post post;
 	bool hasActionBar;
+	VoidCallback onCommentTap;
+	VoidCallback onHeartTap;
 
 	@override
 	Widget build(BuildContext context) {
@@ -13,7 +15,9 @@ class PostCard extends StatelessWidget {
 			//margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
 			child: new Post(
 				post: post,
-				hasActionBar: hasActionBar
+				hasActionBar: hasActionBar,
+				onCommentTap: onCommentTap,
+				onHeartTap: onHeartTap
 			),
 			decoration: new BoxDecoration(
 				color: Colors.white,

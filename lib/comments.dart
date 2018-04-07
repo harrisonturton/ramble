@@ -9,17 +9,17 @@ class Comments extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return new Scaffold(
+			backgroundColor: Colors.white,
 			body: new Container(
-				child: new PostHero(
-					post: post,
-				),
-				decoration: new BoxDecoration(
-					boxShadow: <BoxShadow>[
-						new BoxShadow(
-							color: const Color.fromRGBO(135, 160, 181, 0.2),
-							offset: new Offset(0.0, 3.5),
-							blurRadius: 15.0
-						)
+				color: Colors.green,
+				child: new Column(
+					mainAxisAlignment: MainAxisAlignment.spaceBetween,
+					children: [
+						new PostHero(
+							post: post,
+							onCommentTap: () => Navigator.of(context).pop()
+						),
+						new CommentInput()
 					]
 				)
 			)

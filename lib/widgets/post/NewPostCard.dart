@@ -32,7 +32,7 @@ class NewPostCard extends StatelessWidget {
 		return new GestureDetector(
 			onTap: () => handleTap(context),
 			child: new Container(
-				margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+				//margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
 				padding: const EdgeInsets.all(20.0),
 				child: new Column(
 					mainAxisSize: MainAxisSize.min,
@@ -50,13 +50,13 @@ class NewPostCard extends StatelessWidget {
 				decoration: new BoxDecoration(
 					color: Colors.white,
 					borderRadius: new BorderRadius.circular(5.0),
-					boxShadow: <BoxShadow>[
+					/*boxShadow: <BoxShadow>[
 						new BoxShadow(
 							color: const Color.fromRGBO(135, 160, 181, 0.2),
 							offset: new Offset(0.0, 3.5),
 							blurRadius: 7.0
 						)
-					]
+					]*/
 				)
 			)
 		);

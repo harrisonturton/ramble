@@ -5,9 +5,11 @@ import 'package:newsfeed_2/model/model.dart' as Model;
 import 'package:newsfeed_2/widgets/widgets.dart';
 
 class Post extends StatelessWidget {
-	Post({this.post, this.hasActionBar=true});
+	Post({this.post, this.hasActionBar=true, this.onCommentTap, this.onHeartTap});
 	Model.Post post;
 	bool hasActionBar;
+	VoidCallback onCommentTap;
+	VoidCallback onHeartTap;
 
 	@override
 	Widget build(BuildContext context) {
@@ -25,7 +27,11 @@ class Post extends StatelessWidget {
 					new _PostHeader(post: post),
 					new _PostContent(post: post),
 					hasActionBar
-					? new _PostActionBar(post: post)
+					? new _PostActionBar(
+						post: post,
+						onCommentTap: onCommentTap != null ? onCommentTap : (){},
+						onHeartTap: onHeartTap != null ? onHeartTap : (){}
+					)
 					: null
 				].where(notNull).toList()
 			),
@@ -75,6 +81,44 @@ class _PostHeader extends StatelessWidget {
 					color: const Color.fromRGBO(135, 160, 181, 0.7),
 					width: 35.0,
 					onTap: () {
+						showDialog(
+							context: context,
+							child: new Dialog(
+								child: new Container(
+								padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 5.0),
+									child: new Column(
+										mainAxisSize: MainAxisSize.min,
+										crossAxisAlignment: CrossAxisAlignment.start,
+										children: [
+											new FlatButton(
+												onPressed: () {},
+												child: new Text(
+													"Hide this post",
+													style: LabelNormal
+												)
+											),
+											new FlatButton(
+												onPressed: () {},
+												child: new Text(
+													"Report this post",
+													style: LabelNormal
+												)
+											),
+											new FlatButton(
+												onPressed: () {},
+												child: new Text(
+													"Block ${post.author.firstName}",
+													style: LabelNormal
+												)
+											),
+										]
+									)
+								)
+							)
+						);
+					}
+					/*
+					onTap: () {
 						showModalBottomSheet(
 							context: context,
 							builder: (context) {
@@ -103,7 +147,7 @@ class _PostHeader extends StatelessWidget {
 								);
 							}
 						);
-					}
+					}*/
 				),
 			]
 		);
@@ -129,8 +173,10 @@ class _PostContent extends StatelessWidget {
 }
 
 class _PostActionBar extends StatelessWidget {
-	_PostActionBar({this.post});
+	_PostActionBar({this.post, this.onCommentTap, this.onHeartTap});
 	Model.Post post;
+	VoidCallback onCommentTap;
+	VoidCallback onHeartTap;
 
 	@override
 	void build(BuildContext context) {
@@ -143,14 +189,26 @@ class _PostActionBar extends StatelessWidget {
 				),
 				new Row(
 					children: [
-						new ImageButton(
+						new TappableImageButton(
 							image: comment,
+							activeImage: comment,
 							color: const Color.fromRGBO(135, 160, 181, 0.7),
-							width: 35.0
+							activeColor: const Color.fromRGBO(135, 160, 181, 0.7),
+							width: 35.0,
+							onTap: onCommentTap,
+							isTapped: false,
 						),
 						new Padding(
 							padding: const EdgeInsets.only(left: 5.0),
-							child: new TappableHeart(isLiked: false)
+							child: new TappableImageButton(
+								image: heart_border,
+								activeImage: heart,
+								color: const Color.fromRGBO(135, 160, 181, 0.7),
+								activeColor: Colors.red,
+								width: 35.0,
+								onTap: onHeartTap,
+								isTapped: false
+							)
 						)
 					]
 				)
