@@ -6,3 +6,4 @@ final String home = "assets/icons/icon_home.png";
 final String vertical_ellipse = "assets/icons/icon_vertical_ellipse.png";
 final String person = "assets/icons/icon_person.png";
 final String plus = "assets/icons/icon_plus.png";
+final String back_arrow = "assets/icons/icon_back_arrow.png";

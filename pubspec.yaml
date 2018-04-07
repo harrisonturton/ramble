@@ -36,6 +36,7 @@ flutter:
     - assets/icons/icon_home.png
     - assets/icons/icon_person.png
     - assets/icons/icon_plus.png
+    - assets/icons/icon_back_arrow.png
     - assets/icons/icon_vertical_ellipse.png
     - assets/mock/profile_pictures/profile_harry.jpg
     - assets/mock/profile_pictures/profile_robert.jpg

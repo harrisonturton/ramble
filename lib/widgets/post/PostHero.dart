@@ -8,7 +8,7 @@ class PostCardHero extends StatelessWidget {
 	Model.Post post;
 
 	void handleTap(BuildContext context) {
-		//MaterialPageRoute.debugEnableFadingRoutes = true;
+		MaterialPageRoute.debugEnableFadingRoutes = true;
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
 				return new Scaffold(

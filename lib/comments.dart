@@ -10,17 +10,23 @@ class Comments extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return new Scaffold(
 			backgroundColor: Colors.white,
+			appBar: new AppBar(
+				title: const Text("Thread"),
+				elevation: 2.0
+			),
 			body: new Container(
-				color: Colors.green,
-				child: new Column(
-					mainAxisAlignment: MainAxisAlignment.spaceBetween,
-					children: [
-						new PostHero(
-							post: post,
-							onCommentTap: () => Navigator.of(context).pop()
-						),
-						new CommentInput()
-					]
+				color: Colors.white,
+				child: new SingleChildScrollView(
+					child: new Column(
+						mainAxisAlignment: MainAxisAlignment.spaceBetween,
+						children: [
+							new PostHero(
+								post: post,
+								onCommentTap: () => Navigator.of(context).pop()
+							),
+							new CommentInput()
+						]
+					)
 				)
 			)
 		);
