@@ -10,7 +10,7 @@ class PostCard extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return new Container(
-			margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
+			//margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
 			child: new Post(
 				post: post,
 				hasActionBar: hasActionBar
@@ -18,13 +18,13 @@ class PostCard extends StatelessWidget {
 			decoration: new BoxDecoration(
 				color: Colors.white,
 				borderRadius: new BorderRadius.circular(5.0),
-				boxShadow: <BoxShadow>[
-					new BoxShadow(
-						color: const Color.fromRGBO(135, 160, 181, 0.2),
-						offset: new Offset(0.0, 3.5),
-						blurRadius: 7.0
-					)
-				]
+				//boxShadow: <BoxShadow>[
+				//	new BoxShadow(
+				//		color: const Color.fromRGBO(135, 160, 181, 0.2),
+				//		offset: new Offset(0.0, 3.5),
+				//		blurRadius: 7.0
+				//	)
+				//]
 			)
 		);
 	}

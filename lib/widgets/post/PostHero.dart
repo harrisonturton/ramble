@@ -13,7 +13,7 @@ class PostCardHero extends StatelessWidget {
 				return new Scaffold(
 					body: new GestureDetector(
 						onTap: () => Navigator.of(context).pop(),
-						child: new Post(post: post)
+						child: new PostHero(post: post)
 					)
 				);
 			}
