@@ -1,8 +1,7 @@
-# newsfeed_2
+# Social Media
 
-A new Flutter project.
+This project is currently a social media front-end, written in Flutter & Dart.
 
-## Getting Started
+It has dreams of becoming a social network, however.
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+Checkout out this [gif of it's current form!](https://i.imgur.com/p7x0sA0.gifv)
