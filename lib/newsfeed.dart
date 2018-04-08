@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/widgets/widgets.dart';
+import 'package:newsfeed_2/style/style.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
 import 'package:newsfeed_2/mock/mock.dart';
 import 'dart:async';
@@ -17,6 +18,7 @@ class Newsfeed extends StatelessWidget {
 	Widget build(BuildContext context) {
 		return new RefreshIndicator(
 			onRefresh: onRefresh,
+			color: Primary,
 			child: new ListView(
 				children: [
 					newPost(),

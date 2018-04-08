@@ -53,7 +53,7 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 							new SliverAppBar(
 								elevation: 2.0,
 								title: new Padding(
-									padding: const EdgeInsets.only(left: 120.0),
+									padding: const EdgeInsets.only(left: 5.0),
 									child: new Text(
 										_currentName,
 										style: new TextStyle(
