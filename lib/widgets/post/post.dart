@@ -132,6 +132,7 @@ class _PostContent extends StatelessWidget {
 		return new Padding(
 			padding: new EdgeInsets.symmetric(vertical: 15.0),
 			child: new Container(
+				alignment: Alignment.centerLeft,
 				child: new Text(
 					post.content,
 					style: PostBody
