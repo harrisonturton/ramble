@@ -117,37 +117,6 @@ class _PostHeader extends StatelessWidget {
 							)
 						);
 					}
-					/*
-					onTap: () {
-						showModalBottomSheet(
-							context: context,
-							builder: (context) {
-								return new Container(
-									child: new Padding(
-										padding: const EdgeInsets.all(30.0),
-										child: new ListView(
-											children: [
-												new Padding(
-													padding: const EdgeInsets.symmetric(vertical: 15.0),
-													child: new FlatButton(
-														onPressed: () {},
-														child: new Text("Hide this post")
-													),
-												),
-												new Padding(
-													padding: const EdgeInsets.symmetric(vertical: 15.0),
-													child: new FlatButton(
-														onPressed: () {},
-														child: new Text("Block ${post.author.firstName}")
-													),
-												)
-											]
-										)
-									)
-								);
-							}
-						);
-					}*/
 				),
 			]
 		);

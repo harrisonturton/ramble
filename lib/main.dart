@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/widgets/widgets.dart';
-import 'package:newsfeed_2/style/style.dart';
+import 'package:newsfeed_2/style/style.dart' as Style;
 import 'newsfeed.dart';
 import 'messages.dart';
 
@@ -46,18 +46,41 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 				fontFamily: "Source Sans"
 			),
 			home: new Scaffold(
+				backgroundColor: Colors.white,
 				body: new NestedScrollView(
 					headerSliverBuilder: (BuildContext context, bool isInnerBoxScrolled) {
 						return [
 							new SliverAppBar(
-								title: new Text(_currentName),
+								elevation: 2.0,
+								title: new Padding(
+									padding: const EdgeInsets.only(left: 120.0),
+									child: new Text(
+										_currentName,
+										style: new TextStyle(
+											fontWeight: FontWeight.w600
+										)
+									)
+								),
 								pinned: true,
 								floating: true,
 								bottom: new TabBar(
+									indicatorColor: const Color.fromRGBO(144, 71, 255, 1.0),
 									controller: _controller,
 									tabs: [
-										new Tab(text: _tabNames[0]),
-										new Tab(text: _tabNames[1])
+										new Tab(
+											icon: new Image.asset(
+												"assets/icons/icon_home_enclosed_thick.png",
+												color: _controller.index == 0 ? Style.Primary : Colors.grey[800],
+												width: 35.0
+											)
+										),
+										new Tab(
+											icon: new Image.asset(
+												comment,
+												color: _controller.index == 1 ? Style.Primary : Colors.grey[800],
+												width: 35.0
+											)
+										)
 									]	
 								)
 							)
