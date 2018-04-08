@@ -14,17 +14,25 @@ class Comments extends StatelessWidget {
 				title: const Text("Thread"),
 				elevation: 2.0
 			),
-			body: new Container(
-				color: Colors.white,
-				child: new ListView(
-					children: [
-						new PostHero(
-							post: post,
-							onCommentTap: () => Navigator.of(context).pop()
+			body: new Column(
+				children: [
+					new Expanded(
+						child: new ListView(
+							children: [
+								new PostHero(
+									post: post,
+									onCommentTap: () => Navigator.of(content).pop()
+								),
+								new ChatFrame()
+							]
 						),
-						new ChatFrame(),
-					]
-				)
+					),
+					//new PostHero(
+					//	post: post,
+					//	onCommentTap: () => Navigator.of(context).pop()
+					//),
+					new CommentInput(),
+				]
 			)
 		);
 	}

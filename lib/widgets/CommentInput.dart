@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/style/style.dart';
+import 'package:newsfeed_2/widgets/widgets.dart';
 
 class CommentInput extends StatelessWidget {
+
 	@override
 	void build(BuildContext context) {
 		return new Container(

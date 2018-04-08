@@ -11,6 +11,7 @@ class Comment extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
+		//Scrollable.ensureVisible(context);
 		return new Align(
 			alignment: alignment,
 			child: new Container(

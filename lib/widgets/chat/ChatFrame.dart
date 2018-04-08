@@ -10,47 +10,29 @@ class ChatFrame extends StatelessWidget {
 		return new Container(
 			padding: const EdgeInsets.all(15.0),
 			child: new Column(
-				//mainAxisSize: MainAxisSize.min,
 				children: [
 					new HomeComment(
 						author: new MockPerson(),
-						content: "Wow! What a good post!"
-					),
-					new AwayComment(
-						author: new MockPerson(),
-						content: "Commenting is so fun"
-					),
-					new AwayComment(
-						author: new MockPerson(),
-						content: "Weewoo emojis 😍😍😘"
+						content: "weee"
 					),
 					new HomeComment(
 						author: new MockPerson(),
-						content: "Noice"
+						content: "weee"
 					),
 					new HomeComment(
 						author: new MockPerson(),
-						content: "Noice"
+						content: "weee"
 					),
 					new HomeComment(
 						author: new MockPerson(),
-						content: "Noice"
+						content: "weee"
 					),
 					new HomeComment(
 						author: new MockPerson(),
-						content: "Noice"
+						content: "weee"
 					),
-					new HomeComment(
-						author: new MockPerson(),
-						content: "Noice"
-					),
-					new HomeComment(
-						author: new MockPerson(),
-						content: "fuck yea we can scroll"
-					),
-					new CommentInput()
 				]
-			)
+			),
 		);
 	}
 }
