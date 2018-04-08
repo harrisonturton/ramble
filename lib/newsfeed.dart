@@ -9,25 +9,23 @@ class Newsfeed extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-		var timeDilation = 5.0;
-		return new Scaffold(
-			//backgroundColor: const Color.fromRGBO(251,251,251,1.0),
-			backgroundColor: Colors.white,
-			body: new ListView(
-				children: <Widget>[
-					new NewPostCard(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-					newPost(),
-				]
-			)
+		return new ListView(
+			children: [
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+				newPost(),
+			]
 		);
 	}
 }
