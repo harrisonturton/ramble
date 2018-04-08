@@ -9,19 +9,30 @@ class Comments extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return new Scaffold(
-			backgroundColor: Colors.white,
+			backgroundColor: const Color.fromRGBO(250,250,250,1.0),
 			appBar: new AppBar(
 				title: const Text("Thread"),
-				elevation: 2.0
+				elevation: 0.0
 			),
 			body: new Column(
 				children: [
 					new Expanded(
 						child: new ListView(
 							children: [
-								new PostHero(
-									post: post,
-									onCommentTap: () => Navigator.of(content).pop()
+								new Container(
+									decoration: new BoxDecoration(
+										boxShadow: [
+											new BoxShadow(
+												color: const Color.fromRGBO(0,0,0,0.05),
+												offset: new Offset(0.0, 3.5),
+												blurRadius: 7.0
+											)
+										]
+									),
+									child: new PostHero(
+										post: post,
+										onCommentTap: () => Navigator.of(content).pop()
+									),
 								),
 								new ChatFrame()
 							]

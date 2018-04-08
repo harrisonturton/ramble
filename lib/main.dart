@@ -64,7 +64,7 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 								pinned: true,
 								floating: true,
 								bottom: new TabBar(
-									indicatorColor: const Color.fromRGBO(144, 71, 255, 1.0),
+									indicatorColor: Style.Primary,
 									controller: _controller,
 									tabs: [
 										new Tab(

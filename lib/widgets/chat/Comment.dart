@@ -19,7 +19,7 @@ class Comment extends StatelessWidget {
 					horizontal: 15.0,
 					vertical: 12.0
 				),
-				margin: const EdgeInsets.symmetric(vertical: 5.0),
+				margin: const EdgeInsets.symmetric(vertical: 2.5),
 				child: new Text(
 					"${content}",
 					style: new TextStyle(
@@ -29,7 +29,7 @@ class Comment extends StatelessWidget {
 				),
 				decoration: new BoxDecoration(
 					color: color,
-					borderRadius: new BorderRadius.circular(15.0)
+					borderRadius: new BorderRadius.circular(10.0)
 				)
 			)
 		);

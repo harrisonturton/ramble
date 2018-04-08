@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
+import 'package:newsfeed_2/style/style.dart' as Style;
 import 'Comment.dart';
 
 class HomeComment extends StatelessWidget {
@@ -13,7 +14,7 @@ class HomeComment extends StatelessWidget {
 			author: author,
 			content: content,
 			alignment: Alignment.centerRight,
-			color: const Color.fromRGBO(66, 134, 245, 1.0),
+			color: Style.HomeComment,
 			fontColor: Colors.white
 		);
 	}
