@@ -16,18 +16,14 @@ class Comments extends StatelessWidget {
 			),
 			body: new Container(
 				color: Colors.white,
-				child: new SingleChildScrollView(
-					child: new Column(
-						mainAxisAlignment: MainAxisAlignment.spaceBetween,
-						children: [
-							new PostHero(
-								post: post,
-								onCommentTap: () => Navigator.of(context).pop()
-							),
-							new ChatFrame(),
-							new CommentInput()
-						]
-					)
+				child: new ListView(
+					children: [
+						new PostHero(
+							post: post,
+							onCommentTap: () => Navigator.of(context).pop()
+						),
+						new ChatFrame(),
+					]
 				)
 			)
 		);

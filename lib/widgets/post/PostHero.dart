@@ -11,10 +11,8 @@ class PostCardHero extends StatelessWidget {
 		MaterialPageRoute.debugEnableFadingRoutes = true;
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
-				return new Scaffold(
-					body: new Comments(
-						post: post
-					)
+				return new Comments(
+					post: post
 				);
 			}
 		));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/mock/mock.dart';
+import 'package:newsfeed_2/widgets/widgets.dart';
 import 'HomeComment.dart';
 import 'AwayComment.dart';
 
@@ -9,7 +10,7 @@ class ChatFrame extends StatelessWidget {
 		return new Container(
 			padding: const EdgeInsets.all(15.0),
 			child: new Column(
-				mainAxisSize: MainAxisSize.min,
+				//mainAxisSize: MainAxisSize.min,
 				children: [
 					new HomeComment(
 						author: new MockPerson(),
@@ -47,6 +48,7 @@ class ChatFrame extends StatelessWidget {
 						author: new MockPerson(),
 						content: "fuck yea we can scroll"
 					),
+					new CommentInput()
 				]
 			)
 		);

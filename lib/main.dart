@@ -18,6 +18,27 @@ class App extends StatelessWidget {
 	  home: new DefaultTabController(
 		length: 2,
 		child: new Scaffold(
+			appBar: new AppBar(
+				title: const Text("Newsfeed"),
+				bottom: new TabBar(
+					tabs: [
+						new Tab(
+							icon: new Image.asset(
+								"assets/icons/icon_home.png",
+								color: Colors.grey[800],
+								width: 35.0
+							),
+						),
+						new Tab(
+							icon: new Image.asset(
+								"assets/icons/icon_comment.png",
+								color: Colors.grey[800],
+								width: 35.0
+							),
+						),
+					]
+				),
+			),
 			body: new TabBarView(
 				children: [
 					new Newsfeed(),
