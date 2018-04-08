@@ -24,6 +24,7 @@ class Comments extends StatelessWidget {
 								post: post,
 								onCommentTap: () => Navigator.of(context).pop()
 							),
+							new ChatFrame(),
 							new CommentInput()
 						]
 					)
