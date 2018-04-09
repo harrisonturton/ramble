@@ -19,7 +19,7 @@ class Post extends StatelessWidget {
 				left: 20.0,
 				right: 20.0,
 				top: 25.0,
-				bottom: 25.0
+				bottom: 15.0
 			),
 			child: new Column(
 				mainAxisSize: MainAxisSize.min,
@@ -130,7 +130,7 @@ class _PostContent extends StatelessWidget {
 	@override
 	void build(BuildContext context) {
 		return new Padding(
-			padding: new EdgeInsets.symmetric(vertical: 15.0),
+			padding: new EdgeInsets.symmetric(vertical: 10.0),
 			child: new Container(
 				alignment: Alignment.centerLeft,
 				child: new Text(
