@@ -37,8 +37,8 @@ var LabelStrong = new TextStyle(
 
 var PostBody = new TextStyle(
 	fontFamily: "Roboto",
-	fontWeight: FontWeight.normal,
-	fontSize: 15.0,
+	fontWeight: FontWeight.w400,
+	fontSize: 15.5,
 	height: 1.15,
 	color: TextAlt,
 	decoration: TextDecoration.none
