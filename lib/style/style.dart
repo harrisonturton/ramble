@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
-var TextLight = const Color.fromRGBO(135, 160, 181, 1.0);
+var TextLight = const Color.fromRGBO(143, 160, 173, 1.0);
 var TextDark = const Color.fromRGBO(60, 64, 83, 1.0);
 var TextAlt = const Color.fromRGBO(50, 67, 81, 1.0);
 

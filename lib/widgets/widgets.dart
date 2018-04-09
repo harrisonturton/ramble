@@ -4,6 +4,7 @@ export "post/PostHero.dart";
 export "post/NewPostCard.dart";
 export "chat/ChatListItem.dart";
 export "chat/ChatFrame.dart";
+export "chat/ChatScreen.dart";
 export "Avatar.dart";
 export "ImageButton.dart";
 export "ImageIcons.dart";

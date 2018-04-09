@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ImageButton extends StatelessWidget {
-	ImageButton({this.image, this.color, this.width, this.onTap});
+	ImageButton({this.image, this.color, this.width=35.0, this.onTap});
 	String image;
 	Color color;
 	double width;

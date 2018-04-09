@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/mock/mock.dart';
 import 'package:newsfeed_2/widgets/widgets.dart';
-import 'package:newsfeed_2/style/style.dart';
+import 'package:newsfeed_2/style/style.dart' as Style;
 import 'package:newsfeed_2/model/model.dart' as Model;
 
 class ChatListItem extends StatelessWidget {
@@ -9,26 +9,10 @@ class ChatListItem extends StatelessWidget {
 	Model.Person person;
 
 	void handleTap(BuildContext context) {
+		MaterialPageRoute.debugEnableFadingRoutes = true;
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
-				return new Scaffold(
-					appBar: new AppBar(
-						title: new Text("${person.fullName}"),
-						elevation: 2.0
-					),
-					body: new Column(
-						children: [
-							new Expanded(
-								child: new ListView(
-									children: [
-										new ChatFrame()
-									]
-								)
-							),
-							new CommentInput()
-						]
-					)
-				);
+				return new ChatScreen(person: person);
 			}
 		));
 	}
@@ -49,14 +33,14 @@ class ChatListItem extends StatelessWidget {
 							new Text(
 								person.fullName,
 								style: new TextStyle(
-									color: TextDark,
+									color: Style.TextDark,
 									fontWeight: FontWeight.w600,
 									fontSize: 16.0
 								)
 							),
 							new Text(
 								"Heyy, how are you today?",
-								style: LabelWeak
+								style: Style.LabelWeak
 							)
 						]
 					),
