@@ -8,7 +8,7 @@ class CommentInput extends StatelessWidget {
 		return new TextField(
 			maxLines: null,
 			style: new TextStyle(
-				fontSize: 15.0,
+				fontSize: 16.0,
 				color: Style.TextDark
 			),
 			decoration: new InputDecoration(
@@ -25,12 +25,27 @@ class CommentInput extends StatelessWidget {
 				top: 2.0, bottom: 2.0,
 				left: 25.0
 			),
-			child: createInputStadium(),
+			child: new Row(
+				children: [
+					new Flexible(
+						child: createInputStadium()
+					),
+					new Container(
+						padding: const EdgeInsets.only(right: 5.0),
+						child: new Material(
+							color: Colors.white,
+							child: new IconButton(
+								icon: new Icon(Icons.send),
+								iconSize: 20.0,
+								onPressed: () {},
+								color: Style.Primary
+							)
+						)
+					)
+				]
+			),
 			decoration: new BoxDecoration(
 				color: Colors.white,
-				border: new Border(
-					//top: new BorderSide(width: 1.0, color: Colors.grey[300])
-				),
 				boxShadow: [
 					new BoxShadow(
 						color: const Color.fromRGBO(0, 0, 0, 0.05),
@@ -40,32 +55,5 @@ class CommentInput extends StatelessWidget {
 				]
 			)
 		);
-		return new Container(
-			child: new TextField(
-				maxLines: null,
-				style: new TextStyle(
-					color: Colors.green,
-					fontSize: 28.0,
-				),
-				decoration: new InputDecoration(
-					hintText: "Aa...",
-					border: InputBorder.none,
-					contentPadding: new EdgeInsets.all(0.0)
-				)
-			),
-			margin: new EdgeInsets.all(15.0),
-			padding: new EdgeInsets.only(
-				left: 15.0, right: 15.0,
-				top: 10.0, bottom: 5.0
-			),
-			decoration: new BoxDecoration(
-				borderRadius: new BorderRadius.circular(10.0),
-				border: new Border.all(
-					color: const Color.fromRGBO(135, 160, 181, 0.7),
-					width: 1.0),
-				color: Colors.white,
-			)
-		);
-
 	}
 }
