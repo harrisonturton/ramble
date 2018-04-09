@@ -18,7 +18,7 @@ class Post extends StatelessWidget {
 			padding: const EdgeInsets.only(
 				left: 20.0,
 				right: 20.0,
-				top: 10.0,
+				top: 25.0,
 				bottom: 25.0
 			),
 			child: new Column(

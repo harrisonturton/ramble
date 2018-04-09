@@ -9,4 +9,3 @@ export "ImageButton.dart";
 export "ImageIcons.dart";
 export "TappableImageButton.dart";
 export "CommentInput.dart";
-export "EnsureVisibleWhenFocused.dart";
