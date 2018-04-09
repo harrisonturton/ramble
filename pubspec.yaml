@@ -31,11 +31,13 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/icons/icon_comment.png
+    - assets/icons/icon_comment_filled.png
     - assets/icons/icon_heart.png
     - assets/icons/icon_heart_filled.png
     - assets/icons/icon_home.png
     - assets/icons/icon_home_enclosed.png
     - assets/icons/icon_home_enclosed_thick.png
+    - assets/icons/icon_home_enclosed_thick_filled.png
     - assets/icons/icon_person.png
     - assets/icons/icon_plus.png
     - assets/icons/icon_back_arrow.png

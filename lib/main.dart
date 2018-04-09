@@ -71,14 +71,14 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 									tabs: [
 										new Tab(
 											icon: new Image.asset(
-												"assets/icons/icon_home_enclosed_thick.png",
+												_controller.index == 0 ? "assets/icons/icon_home_enclosed_thick_filled.png" : home_enclosed,
 												color: _controller.index == 0 ? Style.Primary : Colors.grey[800],
 												width: 35.0
 											)
 										),
 										new Tab(
 											icon: new Image.asset(
-												comment,
+												_controller.index == 1 ? "assets/icons/icon_comment_filled.png" : comment,
 												color: _controller.index == 1 ? Style.Primary : Colors.grey[800],
 												width: 35.0
 											)
