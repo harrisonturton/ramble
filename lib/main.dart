@@ -62,6 +62,8 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 									)
 								),
 								pinned: true,
+								forceElevated: true,
+								//snap: true,
 								floating: true,
 								bottom: new TabBar(
 									indicatorColor: Style.Primary,
