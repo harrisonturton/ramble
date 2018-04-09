@@ -160,8 +160,8 @@ class _PostActionBar extends StatelessWidget {
 				new Row(
 					children: [
 						new TappableImageButton(
-							image: comment,
-							activeImage: comment,
+							image: chat_bubble,
+							activeImage: chat_bubble,
 							color: const Color.fromRGBO(135, 160, 181, 0.7),
 							activeColor: const Color.fromRGBO(135, 160, 181, 0.7),
 							width: 35.0,
@@ -171,8 +171,8 @@ class _PostActionBar extends StatelessWidget {
 						new Padding(
 							padding: const EdgeInsets.only(left: 5.0),
 							child: new TappableImageButton(
-								image: heart_border,
-								activeImage: heart,
+								image: heart,
+								activeImage: heart_strong,
 								color: const Color.fromRGBO(135, 160, 181, 0.7),
 								activeColor: Colors.red,
 								width: 35.0,

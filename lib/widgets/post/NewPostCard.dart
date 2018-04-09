@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsfeed_2/style/style.dart';
+import 'package:newsfeed_2/style/style.dart' as Style;
 
 class NewPostCard extends StatelessWidget {
 
@@ -7,13 +7,31 @@ class NewPostCard extends StatelessWidget {
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
 				return new Scaffold(
+					backgroundColor: Colors.white,
+					appBar: new AppBar(
+						elevation: 0.0,
+						actions: [
+							new FlatButton(
+								onPressed: () {},
+								child: new Text(
+									"POST",
+									style: new TextStyle(
+										fontWeight: FontWeight.w700,
+										color: Style.Primary
+									)
+								)
+							)
+						]
+					),
 					body: new Container(
 						color: Colors.white,
-						padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 100.0),
+						padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
 						child: new TextField(
 							maxLines: null,
+							keyboardType: TextInputType.multiline,
+							autofocus: true,
 							style: new TextStyle(
-								color: TextDark,
+								color: Style.TextDark,
 								height: 1.25,
 								fontSize: 24.0,
 							),
@@ -33,16 +51,20 @@ class NewPostCard extends StatelessWidget {
 			onTap: () => handleTap(context),
 			child: new Container(
 				//margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-				padding: const EdgeInsets.all(20.0),
+				padding: const EdgeInsets.only(
+					left: 30.0,
+					top: 30.0,
+					bottom: 15.0
+				),
 				child: new Column(
 					mainAxisSize: MainAxisSize.min,
 					crossAxisAlignment: CrossAxisAlignment.start,
 					children: [
 						new Text(
-							"Aa...",
+							"What's on your mind?",
 							style: new TextStyle(
 								fontSize: 16.0,
-								color: TextLight
+								color: Style.TextLight
 							)
 						)
 					]

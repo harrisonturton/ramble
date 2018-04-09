@@ -13,14 +13,14 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> with TickerProviderStateMixin {
 
-	final List<String> _tabNames = ["Newsfeed", "Messages"];
+	final List<String> _tabNames = ["Newsfeed", "Messages", "Notifications", "Navigation"];
 	String _currentName;
 	TabController _controller;
 
 	@override
 	void initState() {
 		super.initState();
-		_controller = new TabController(length: 2, vsync: this);
+		_controller = new TabController(length: 4, vsync: this);
 		_currentName = _tabNames[0];
 		_controller.addListener(_handleChangeTab);
 	}
@@ -43,7 +43,7 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 			title: "Social Media App",
 			theme: new ThemeData(
 				primaryColor: Colors.white,
-				fontFamily: "Source Sans"
+				fontFamily: "Roboto"
 			),
 			home: new Scaffold(
 				backgroundColor: Colors.white,
@@ -71,18 +71,32 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 									tabs: [
 										new Tab(
 											icon: new Image.asset(
-												_controller.index == 0 ? "assets/icons/icon_home_enclosed_thick_filled.png" : home_enclosed,
+												_controller.index == 0 ? home_strong : home,
 												color: _controller.index == 0 ? Style.Primary : Colors.grey[800],
 												width: 35.0
 											)
 										),
 										new Tab(
 											icon: new Image.asset(
-												_controller.index == 1 ? "assets/icons/icon_comment_filled.png" : comment,
+												_controller.index == 1 ? chat_bubble_strong : chat_bubble,
 												color: _controller.index == 1 ? Style.Primary : Colors.grey[800],
 												width: 35.0
 											)
-										)
+										),
+										new Tab(
+											icon: new Image.asset(
+												_controller.index == 2 ? bell_strong : bell,
+												color: _controller.index == 2 ? Style.Primary : Colors.grey[800],
+												width: 35.0
+											)
+										),
+										new Tab(
+											icon: new Image.asset(
+												compass,
+												color: _controller.index == 3 ? Style.Primary : Colors.grey[800],
+												width: 35.0
+											)
+										),
 									]	
 								)
 							)
@@ -92,7 +106,25 @@ class _AppState extends State<App> with TickerProviderStateMixin {
 						controller: _controller,
 						children: [ 
 							new Newsfeed(),
-							new Messages()
+							new Messages(),
+							new ListView(
+								children: [
+									const Text("Profile"),
+									const Text("Profile"),
+									const Text("Profile"),
+									const Text("Profile"),
+									const Text("Profile"),
+								]
+							),
+							new ListView(
+								children: [
+									const Text("Profile"),
+									const Text("Profile"),
+									const Text("Profile"),
+									const Text("Profile"),
+									const Text("Profile"),
+								]
+							)	
 						]
 					)
 				),

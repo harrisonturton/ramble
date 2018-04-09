@@ -43,6 +43,10 @@ class CommentInput extends StatelessWidget {
 		return new Container(
 			child: new TextField(
 				maxLines: null,
+				style: new TextStyle(
+					color: Colors.green,
+					fontSize: 28.0,
+				),
 				decoration: new InputDecoration(
 					hintText: "Aa...",
 					border: InputBorder.none,

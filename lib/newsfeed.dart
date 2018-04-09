@@ -22,6 +22,7 @@ class Newsfeed extends StatelessWidget {
 			child: new ListView(
 				padding: const EdgeInsets.all(0.0),
 				children: [
+					new NewPostCard(),
 					newPost(),
 					newPost(),
 					newPost(),
