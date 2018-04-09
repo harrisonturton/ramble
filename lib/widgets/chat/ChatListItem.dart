@@ -8,6 +8,31 @@ class ChatListItem extends StatelessWidget {
 	ChatListItem({this.person});
 	Model.Person person;
 
+	void handleTap(BuildContext context) {
+		Navigator.of(context).push(new MaterialPageRoute(
+			builder: (context) {
+				return new Scaffold(
+					appBar: new AppBar(
+						title: new Text("${person.fullName}"),
+						elevation: 2.0
+					),
+					body: new Column(
+						children: [
+							new Expanded(
+								child: new ListView(
+									children: [
+										new ChatFrame()
+									]
+								)
+							),
+							new CommentInput()
+						]
+					)
+				);
+			}
+		));
+	}
+
 	Widget _header() {
 		return new Row(
 			mainAxisSize: MainAxisSize.min,
@@ -42,25 +67,30 @@ class ChatListItem extends StatelessWidget {
 
 	@override
 	Widget build(BuildContext context) {
-		return new Container(
-			child: new Column(
-				mainAxisSize: MainAxisSize.min,
-				children: [
-					new Padding(
-						padding: const EdgeInsets.all(15.0),
-						child: new Row(
-							mainAxisAlignment: MainAxisAlignment.spaceBetween,
-							children: [
-								_header(),
-								new Text("3 minutes ago")
-							]
-						)
+		return new Material(
+			color: Colors.transparent,
+			child: new InkWell(
+				onTap: () => handleTap(context),
+				child: new Container(
+					child: new Column(
+						mainAxisSize: MainAxisSize.min,
+						children: [
+							new Padding(
+								padding: const EdgeInsets.symmetric(
+									horizontal: 15.0,
+									vertical: 20.0
+								),
+								child: new Row(
+									mainAxisAlignment: MainAxisAlignment.spaceBetween,
+									children: [
+										_header(),
+										new Text("3 minutes ago")
+									]
+								)
+							),
+						]
 					),
-					new Divider()
-				]
-			),
-			decoration: new BoxDecoration(
-				color: Colors.white,
+				)
 			)
 		);
 	}

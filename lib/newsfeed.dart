@@ -20,6 +20,7 @@ class Newsfeed extends StatelessWidget {
 			onRefresh: onRefresh,
 			color: Primary,
 			child: new ListView(
+				padding: const EdgeInsets.all(0.0),
 				children: [
 					newPost(),
 					newPost(),

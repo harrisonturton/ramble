@@ -6,6 +6,7 @@ class Messages extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return new ListView(
+			padding: const EdgeInsets.all(0.0),
 			children: [
 				new ChatListItem(
 					person: new MockPerson()
