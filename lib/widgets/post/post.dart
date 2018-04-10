@@ -48,7 +48,7 @@ class _PostHeader extends StatelessWidget {
 	final Model.Post post;
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		return new Row(
 			mainAxisAlignment: MainAxisAlignment.spaceBetween,
 			children: <Widget>[
@@ -128,7 +128,7 @@ class _PostContent extends StatelessWidget {
 	Model.Post post;
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		return new Padding(
 			padding: new EdgeInsets.symmetric(vertical: 10.0),
 			child: new Container(
@@ -149,7 +149,7 @@ class _PostActionBar extends StatelessWidget {
 	VoidCallback onHeartTap;
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		return new Row(
 			mainAxisAlignment: MainAxisAlignment.spaceBetween,
 			children: <Widget>[

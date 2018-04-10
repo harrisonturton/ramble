@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
 import 'package:newsfeed_2/widgets/widgets.dart';
 
-class Comments extends StatelessWidget {
-	Comments({Key key, this.post}) : super(key: key);
+class CommentScreen extends StatelessWidget {
+	CommentScreen({Key key, this.post}) : super(key: key);
 	final Model.Post post;
 
 	@override
@@ -31,7 +31,7 @@ class Comments extends StatelessWidget {
 									),
 									child: new PostHero(
 										post: post,
-										onCommentTap: () => Navigator.of(content).pop()
+										onCommentTap: () => Navigator.of(context).pop()
 									),
 								),
 								new ChatFrame()
