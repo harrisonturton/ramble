@@ -38,47 +38,7 @@ class App extends StatelessWidget {
 					primaryColor: Colors.white,
 					fontFamily: "Roboto"
 				),
-				home: new Scaffold(
-					body: new Center(
-						child: new ListView(
-							children: [
-								new FlatButton(
-									onPressed: () => store.dispatch(
-										new AddFriend(friend: new MockPerson())
-									),
-									child: const Text("Add Friend")
-								),
-								new FlatButton(
-									onPressed: () => store.dispatch(
-										new RemoveFriend(friend: store.state.friends[0])
-									),
-									child: const Text("Remove Friend")
-								),
-								new FlatButton(
-									onPressed: () => store.dispatch(
-										new CreatePost(post: new MockPost())
-									),
-									child: const Text("Test Firestore connection (Check console)")
-								),
-								new FlatButton(
-									onPressed: () => print(store.state.display()),
-									child: const Text("Print store")
-								),
-								new StoreBuilder<AppState>(
-									builder: (context, store) {
-										List<Widget> children = new List<Widget>();
-										store.state.friends.forEach((Model.Person friend) {
-											children.add(new Text("${friend.firstName}"));
-										});
-										return new Column(
-											children: children
-										);
-									}	
-								)
-							]
-						)
-					)
-				)
+				home: new OnboardingScreen()
 			)
 		);
 	}
