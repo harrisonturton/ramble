@@ -19,7 +19,7 @@ class CommentInput extends StatelessWidget {
 	}
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		return new Container(
 			padding: const EdgeInsets.only(
 				top: 2.0, bottom: 2.0,

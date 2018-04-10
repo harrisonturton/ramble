@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsfeed_2/widgets/widgets.dart';
 import 'package:newsfeed_2/mock/mock.dart';
 
-class Messages extends StatelessWidget {
+class MessagesTab extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
 		return new ListView(

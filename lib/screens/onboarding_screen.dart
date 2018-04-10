@@ -1,14 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/style/style.dart' as Style;
 import 'dart:ui';
-import 'home_screen.dart';
+import 'main_screen.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Onboarding extends StatelessWidget {
+final FirebaseAuth auth = FirebaseAuth.instance;
+final GoogleSignIn googleSignIn = new GoogleSignIn();
+
+void setData() {
+	Firestore.instance.collection("users").document().setData({
+		"first_name": "Harry",
+		"last_name": "Turton",
+		"email": "harrisonturton@gmail.com"
+	});
+}
+
+Future<String> _testSignInWithGoogle() async {
+	GoogleSignInAccount googleUser = await googleSignIn.signIn();
+	GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+	FirebaseUser user = await auth.signInWithGoogle(
+		accessToken: googleAuth.accessToken,
+		idToken: googleAuth.idToken,
+	);
+	assert(user.email != null);
+	assert(user.displayName != null);
+	print("This user is signed in ${user}");
+	return "signInWithGoogle succeeded: ${user}";
+}
+
+class OnboardingScreen extends StatelessWidget {
 
 	void handleLogIn(BuildContext context) {
 		print("Trying to log in...");
+		setData();
+		//_testSignInWithGoogle();
 		Navigator.of(context).pushReplacement(new MaterialPageRoute(
-			builder: (context) => new HomeScreen()
+			builder: (context) => new MainScreen()
 		));
 	}
 
@@ -47,7 +77,7 @@ class Onboarding extends StatelessWidget {
 							]
 						),
 						new Padding(
-							padding: const EdgeInsets.only(top: 30.0),
+							padding: new EdgeInsets.only(top: height / 3.0),
 							child: new FlatButton(
 								onPressed: () => handleLogIn(context),
 								child: const Text("Log In")

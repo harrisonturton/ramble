@@ -8,7 +8,7 @@ class ImageButton extends StatelessWidget {
 	VoidCallback onTap;
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		return new GestureDetector(
 			onTap: onTap,
 			child: new Image.asset(

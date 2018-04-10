@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/widgets/widgets.dart';
 import 'package:newsfeed_2/style/style.dart' as Style;
-import 'newsfeed.dart';
-import 'messages.dart';
+import 'main_tabs/main_tabs.dart';
 
-class HomeScreen extends StatefulWidget {
+class MainScreen extends StatefulWidget {
 	@override
-	_HomeScreenState createState() => new _HomeScreenState();
+	_MainScreenState createState() => new _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
 	final List<String> _tabNames = ["Newsfeed", "Messages", "Notifications", "Navigation"];
 	String _currentName;
@@ -97,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 					body: new TabBarView(
 						controller: _controller,
 						children: [ 
-							new Newsfeed(),
-							new Messages(),
+							new NewsfeedTab(),
+							new MessagesTab(),
 							new ListView(
 								children: [
 									const Text("Profile"),

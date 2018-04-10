@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/model/model.dart' as Model;
 import 'package:newsfeed_2/widgets/widgets.dart';
-import 'package:newsfeed_2/comments.dart';
+import 'package:newsfeed_2/screens/screens.dart';
 
 class PostCardHero extends StatelessWidget {
 	PostCardHero({this.post});
@@ -11,7 +11,7 @@ class PostCardHero extends StatelessWidget {
 		MaterialPageRoute.debugEnableFadingRoutes = true;
 		Navigator.of(context).push(new MaterialPageRoute(
 			builder: (context) {
-				return new Comments(
+				return new CommentScreen(
 					post: post
 				);
 			}
@@ -19,7 +19,7 @@ class PostCardHero extends StatelessWidget {
 	}
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		var timeDilation = 5.0;
 		return new GestureDetector(
 			onTap: () => handleTap(context),
@@ -42,7 +42,7 @@ class PostHero extends StatelessWidget {
 	VoidCallback onHeartTap;
 
 	@override
-	void build(BuildContext context) {
+	Widget build(BuildContext context) {
 		var timeDilation = 5.0;
 		return new GestureDetector(
 			onTap: () => Navigator.of(context).pop(),
