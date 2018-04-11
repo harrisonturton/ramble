@@ -2,6 +2,7 @@ import 'package:newsfeed_2/model/model.dart' as Model;
 import 'package:redux/redux.dart';
 import 'package:newsfeed_2/model/app_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CreatePostSuccess {
 	final Model.Post post;
@@ -9,11 +10,26 @@ class CreatePostSuccess {
 	CreatePostSuccess(this.post);
 }
 
+class Login {
+	final FirebaseUser user;
+
+	Login(this.user);
+}
+
 class FetchPostsSuccess {
 	final List<Model.Post> posts;
 
 	FetchPostsSuccess(this.posts);
 }
+
+final createEmailUser = (String email, String username, String password) {
+	return (Store<AppState> store) {
+		final FirebaseAuth _auth = FirebaseAuth.instance;
+		_auth.createUserWithEmailAndPassword(email, password).then((user) {
+			store.dispatch(new Login(user));
+		});
+	};
+};
 
 final createPostRequest = (Model.Post post) {
 	return (Store<AppState> store) {

@@ -98,24 +98,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 						children: [ 
 							new NewsfeedTab(),
 							new MessagesTab(),
-							new ListView(
-								children: [
-									const Text("Profile"),
-									const Text("Profile"),
-									const Text("Profile"),
-									const Text("Profile"),
-									const Text("Profile"),
-								]
-							),
-							new ListView(
-								children: [
-									const Text("Profile"),
-									const Text("Profile"),
-									const Text("Profile"),
-									const Text("Profile"),
-									const Text("Profile"),
-								]
-							)	
+							new NotificationsTab(),
+							new NavigationTab(),
 						]
 					)
 				),

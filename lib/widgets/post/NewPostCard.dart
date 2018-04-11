@@ -9,8 +9,17 @@ import 'package:newsfeed_2/model/app_state.dart';
 
 class NewPostCard extends StatelessWidget {
 
+	TextEditingController _controller = new TextEditingController();
+
 	void _handleCreatePost(BuildContext context, Store<AppState> store, Model.Post post) {
-		store.dispatch(createPostRequest(post));
+		store.dispatch(createPostRequest(new Model.Post(
+			id: "user_id",
+			author: new MockPerson(),
+			timestamp: new DateTime.now().millisecondsSinceEpoch.toString(),
+			content: _controller.text,
+			isLikedBy: new List<Model.Person>(),
+			comments: new List<Model.Comment>()
+		)));
 		Navigator.of(context).pop();
 	}
 
@@ -43,6 +52,7 @@ class NewPostCard extends StatelessWidget {
 						color: Colors.white,
 						padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
 						child: new TextField(
+							controller: _controller,
 							maxLines: null,
 							keyboardType: TextInputType.multiline,
 							autofocus: true,

@@ -1,13 +1,28 @@
 import 'package:redux/redux.dart';
 import 'package:newsfeed_2/actions/actions.dart';
 import 'package:newsfeed_2/model/app_state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Reducer<AppState> appReducer = combineReducers([
 	//new TypedReducer<AppState, FetchPostsRequest>(fetchPostsSuccess)
 	//new TypedReducer<AppState, AddFriend>(addFriendReducer),
 	new TypedReducer<AppState, FetchPostsSuccess>(fetchPostsSuccess),
 	new TypedReducer<AppState, CreatePostSuccess>(createPostSuccess),
+	new TypedReducer<AppState, Login>(login),
 ]);
+
+AppState login(AppState prevState, Login action) {
+	final FirebaseAuth _auth = FirebaseAuth.instance;
+	print("Current: " + _auth.currentUser.toString());
+	
+	print(action.user);
+	print(action.user.displayName);
+	print(action.user.email);
+	print(action.user.photoUrl);
+	return prevState.copyWith(
+		user: action.user
+	);
+}
 
 AppState createPostSuccess(AppState prevState, CreatePostSuccess action) {
 	return prevState.copyWith(
@@ -20,21 +35,6 @@ AppState fetchPostsSuccess(AppState prevState, FetchPostsSuccess action) {
 		posts: _addAllImmutable(prevState.posts, action.posts)
 	);
 }
-
-/*
-// Add a new friend to the state
-AppState addFriendReducer(AppState prevState, AddFriend action) {
-	return prevState.copyWith(
-		friends: _addImmutable(prevState.friends, action.friend)
-	);
-}
-
-// Remove a friend from the state
-AppState removeFriendReducer(AppState prevState, RemoveFriend action) {
-	return prevState.copyWith(
-		friends: _removeImmutable(prevState.friends, action.friend)
-	);
-}*/
 
 List<T> _addImmutable<T>(List<T> list, T newItem) {
 	return new List<T>()..addAll(list)..add(newItem);

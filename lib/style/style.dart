@@ -5,6 +5,17 @@ var TextLight = const Color.fromRGBO(143, 160, 173, 1.0);
 var TextDark = const Color.fromRGBO(60, 64, 83, 1.0);
 var TextAlt = const Color.fromRGBO(50, 67, 81, 1.0);
 
+var OnboardingSubtitle = new TextStyle(
+	fontSize: 32.0,
+	color: Primary,
+	fontWeight: FontWeight.normal,
+);
+
+var OnboardingQuestion = new TextStyle(
+	fontSize: 16.0,
+	color: TextDark,
+);
+
 var Primary = const Color.fromRGBO(144, 71, 255, 1.0);
 var HomeComment = Primary;
 //var HomeComment = const Color.fromRGBO(66, 134, 245, 1.0);
