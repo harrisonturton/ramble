@@ -68,7 +68,7 @@ class _PostHeader extends StatelessWidget {
 										style: LabelStrong
 									),
 									new Text(
-										"${post.location}, ${post.timestamp}",
+										"${post.timestamp}",
 										style: LabelWeak
 									)
 								]

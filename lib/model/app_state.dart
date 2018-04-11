@@ -1,4 +1,5 @@
 import 'package:newsfeed_2/model/model.dart' as Model;
+import 'package:newsfeed_2/mock/mock.dart';
 import 'package:redux/redux.dart';
 //import 'package:flutter_redux/';
 

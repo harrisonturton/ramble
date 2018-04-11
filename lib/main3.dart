@@ -11,6 +11,7 @@ import 'package:newsfeed_2/model/app_state.dart';
 import 'package:redux/redux.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:newsfeed_2/middleware/middleware.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 void main() {
@@ -28,6 +29,23 @@ class App extends StatelessWidget {
 	App({this.store});
 	final Store store;
 
+	void getUsers(Store<AppState> store) {
+
+	}
+
+	void getPosts(Store<AppState> store) {
+		final CollectionReference postCollection = Firestore.instance.collection("posts");
+		postCollection.getDocuments().then((QuerySnapshot snapshot) {
+			List<DocumentSnapshot> docs = snapshot.documents;
+			print("Getting documents....");
+			List<Model.Post> posts = docs.map((d) => Model.Post.fromMap(d.data)).toList();
+			store.dispatch(new FetchPostsSuccess(posts: posts));
+		}).catchError((err) {
+			print(err);
+			store.dispatch(new FetchPostsFailure(error: err));
+		});
+	}
+
 	@override
 	Widget build(BuildContext context) {
 		return new StoreProvider<AppState>(
@@ -43,22 +61,18 @@ class App extends StatelessWidget {
 						child: new ListView(
 							children: [
 								new FlatButton(
-									onPressed: () => store.dispatch(
-										new AddFriend(friend: new MockPerson())
-									),
-									child: const Text("Add Friend")
+									onPressed: () => getUsers(store),
+									child: const Text("Get Users")
+								),
+								new FlatButton(
+									onPressed: () => getPosts(store),
+									child: const Text("Get Posts")
 								),
 								new FlatButton(
 									onPressed: () => store.dispatch(
-										new RemoveFriend(friend: store.state.friends[0])
+										FetchPostsRequest()
 									),
-									child: const Text("Remove Friend")
-								),
-								new FlatButton(
-									onPressed: () => store.dispatch(
-										new CreatePost(post: new MockPost())
-									),
-									child: const Text("Test Firestore connection (Check console)")
+									child: const Text("Test thunk")
 								),
 								new FlatButton(
 									onPressed: () => print(store.state.display()),
@@ -67,8 +81,8 @@ class App extends StatelessWidget {
 								new StoreBuilder<AppState>(
 									builder: (context, store) {
 										List<Widget> children = new List<Widget>();
-										store.state.friends.forEach((Model.Person friend) {
-											children.add(new Text("${friend.firstName}"));
+										store.state.posts.forEach((Model.Post post) {
+											children.add(new Text("${post.content}"));
 										});
 										return new Column(
 											children: children

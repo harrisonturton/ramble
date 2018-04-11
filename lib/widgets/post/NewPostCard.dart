@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:newsfeed_2/style/style.dart' as Style;
+import 'package:newsfeed_2/model/model.dart' as Model;
+import 'package:newsfeed_2/mock/mock.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:newsfeed_2/actions/actions.dart';
+import 'package:newsfeed_2/model/app_state.dart';
 
 class NewPostCard extends StatelessWidget {
+
+	void _handleCreatePost(BuildContext context, Store<AppState> store, Model.Post post) {
+		store.dispatch(createPostRequest(post));
+		Navigator.of(context).pop();
+	}
 
 	void handleTap(BuildContext context) {
 		Navigator.of(context).push(new MaterialPageRoute(
@@ -11,16 +22,21 @@ class NewPostCard extends StatelessWidget {
 					appBar: new AppBar(
 						elevation: 0.0,
 						actions: [
-							new FlatButton(
-								onPressed: () {},
-								child: new Text(
-									"POST",
-									style: new TextStyle(
-										fontWeight: FontWeight.w700,
-										color: Style.Primary
-									)
-								)
-							)
+							new StoreConnector<AppState, Store<AppState>>(
+								converter: (store) => store,
+								builder: (context, store) {
+									return new FlatButton(
+										onPressed: () => _handleCreatePost(context, store, new MockPost()),
+										child: new Text(
+											"POST",
+											style: new TextStyle(
+												fontWeight: FontWeight.w700,
+												color: Style.Primary
+											)
+										)
+									);
+								}
+							),
 						]
 					),
 					body: new Container(

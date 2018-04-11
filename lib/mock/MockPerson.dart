@@ -90,12 +90,10 @@ var _profilePictures = const [
 ];
 
 class MockPerson implements Person {
+	String id;
 	String firstName;
 	String lastName;
 	String fullName;
-	int age;
-	String gender;
-	String email;
 	String profilePicture;
 
 	final String _imagePathPrefix = "assets/mock/profile_pictures/";
@@ -106,22 +104,11 @@ class MockPerson implements Person {
 
 	void getNewPerson() {
 		Random rand = new Random();
+		id = "-L9j4M4mfyb131J55KnP";
 		firstName = _firstNames[rand.nextInt(_firstNames.length)];
 		lastName = _lastNames[rand.nextInt(_lastNames.length)];
 		fullName = firstName + " " + lastName;
-		age = _getRandomAge(_ageLowerBound, _ageUpperBound);
-		gender = _genders[rand.nextInt(_genders.length)];
-		email = _emails[rand.nextInt(_emails.length)];
 		profilePicture = _profilePictures[rand.nextInt(_profilePictures.length)];
 		profilePicture = _imagePathPrefix + profilePicture;
-	}
-
-	int _getRandomAge(int lowerBound, int upperBound) {
-		Random rand = new Random();
-		var randAge = rand.nextInt(upperBound);
-		while (randAge < lowerBound) {
-			randAge = rand.nextInt(upperBound);
-		}
-		return randAge;
 	}
 }

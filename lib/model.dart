@@ -1,5 +1,4 @@
 import 'package:newsfeed_2/mock/mock.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class DatabaseObject {
 	String id;
@@ -19,12 +18,11 @@ class Person extends DatabaseObject {
 	String fullName;
 	String profilePicture;
 
-	factory Person.fromSnapshot(DocumentSnapshot snapshot) {
+	factory Person.fromMap(Map<String, dynamic> data) {
 		return new Person(
-			id: snapshot.documentID,
-			firstName: snapshot.data["first_name"],
-			lastName: snapshot.data["last_name"],
-			fullName: snapshot.data["first_name"] + " " + data["last_name"],
+			firstName: data["first_name"],
+			lastName: data["last_name"],
+			fullName: data["first_name"] + " " + data["last_name"],
 			profilePicture: "assets/mock/profile_pictures/profile_harry.jpg"
 		);
 	}
@@ -49,14 +47,14 @@ class Post extends DatabaseObject {
 	String timestamp;
 	String content;
 	List<Person> isLikedBy;
-	List<Comment> comments;
+	List<Commment> comments;
 
-	factory Post.fromSnapshot(DocumentSnapshot snapshot) {
+	factory Post.fromMap(Map<String, dynamic> data) {
 		return new Post(
-			id: snapshot.documentID,
 			author: new MockPerson(),
-			timestamp: snapshot.data["timestamp"].toString(),
-			content: snapshot.data["content"],
+			timestamp: data["timestamp"].toString(),
+			content: data["content"],
+			location: data["location"],
 			isLikedBy: new List<Person>(),
 			comments: new List<Comment>()
 		);
@@ -66,6 +64,7 @@ class Post extends DatabaseObject {
 		"author": "users/" + author.id,
 		"timestamp": timestamp,
 		"content": content,
+		"location": location,
 	};
 }
 
