@@ -11,7 +11,7 @@ class WelcomeScreen extends StatelessWidget {
 		fontSize: 20.0,
 		fontWeight: FontWeight.w400,
 		color: Style.text,
-		height: 1.25
+		height: 1.15
 	);
 	final TextStyle _subheaderStyle = new TextStyle(
 		//fontFamily: "Hind",
@@ -122,7 +122,7 @@ class WelcomeScreen extends StatelessWidget {
 									),
 									buildComment(
 										header: "If you delete something, we forget it completely",
-										subheader: "Link here",
+										subheader: "Privacy Policy",
 										context: context,
 										isLink: true
 									),
