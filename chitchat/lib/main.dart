@@ -10,6 +10,7 @@ class App extends StatelessWidget {
 		return new MaterialApp(
 			title: "ChitChat",
 			theme: ThemeData(
+				primaryColor: Style.primary,
 				accentColor: Style.primaryFaint,
 			),
 			home: new Scaffold(

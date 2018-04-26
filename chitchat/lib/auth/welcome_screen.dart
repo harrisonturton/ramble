@@ -1,23 +1,30 @@
 import "dart:ui";
 import "package:flutter/material.dart";
+import "package:url_launcher/url_launcher.dart";
 import "package:chitchat/common/style.dart" as Style;
-import 'package:url_launcher/url_launcher.dart';
+import "package:chitchat/auth/auth.dart";
 
 class WelcomeScreen extends StatelessWidget {
 
 	final TextStyle _headerStyle = new TextStyle(
-		fontFamily: "Hind",
+		//fontFamily: "Hind",
 		fontSize: 20.0,
 		fontWeight: FontWeight.w400,
 		color: Style.text,
-		height: 0.9
+		height: 1.25
 	);
 	final TextStyle _subheaderStyle = new TextStyle(
-		fontFamily: "Hind",
+		//fontFamily: "Hind",
 		fontSize: 18.0,
 		color: Style.textLight,
 		height: 1.25
 	);
+
+	void _openLoginScreen(BuildContext context) {
+		Navigator.of(context).push(new MaterialPageRoute(
+			builder: (context) => new LoginScreen()
+		));
+	}
 
 	Widget buildComment({
 		BuildContext context,
@@ -145,7 +152,7 @@ class WelcomeScreen extends StatelessWidget {
 												),
 												new Padding(padding: const EdgeInsets.symmetric(vertical: 7.0)),
 												new OutlineButton(
-													onPressed: () {},
+													onPressed: () => _openLoginScreen(context),
 													shape: new StadiumBorder(),
 													color: Style.primary,
 													highlightColor: Style.primaryHighlight,
