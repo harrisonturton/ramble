@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
 		);
 		if (isLink) {
 			textElem = new InkWell(
-				onTap: () => launch("https://www.google.com.au"),
+				onTap: () => launch("https://github.com/harrisonturton/chitchat/blob/master/core-beliefs.md"),
 				child: new Text(
 					subheader,
 					style: _linkStyle,
