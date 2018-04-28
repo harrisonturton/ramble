@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:chitchat/common/style.dart" as Style;
-import "package:chitchat/auth/auth.dart";
+import "package:chitchat/welcome/welcome.dart";
 
 void main() => runApp(new App());
 

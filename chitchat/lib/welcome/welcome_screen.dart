@@ -16,6 +16,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 	final _emailController = new TextEditingController();
 	final _passwordController = new TextEditingController();
 
+	String _errorText = "Incorrect details. Have you made a typo?";
+	bool _hasError = false;
+
 	@override
 	Widget build(BuildContext context) {
 		double height = MediaQuery.of(context).size.height;
@@ -62,7 +65,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 										)
 									)	
 								),
-								new VerticalSpace(15.0),
+								new VerticalSpace(7.0),
+								this._hasError
+									? new Text(_errorText, style: Style.errorText)
+									: null,
+								new VerticalSpace(7.0),
 								new StrongButton(
 									onPressed: () {},
 									text: "LOGIN"
@@ -79,7 +86,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 									onPressed: () {},
 									text: "CREATE ACCOUNT"
 								),
-							]
+							].where((i) => i != null).toList()
 						)
 					)
 				]

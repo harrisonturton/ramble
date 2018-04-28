@@ -15,10 +15,15 @@ TextStyle welcomeStyleLight = new TextStyle(
 	fontSize: 34.0,
 	color: textLight,
 );
+
 TextStyle welcomeStyle = new TextStyle(
 	fontFamily: "Roboto",
 	fontWeight: FontWeight.w400,
 	fontSize: 34.0,
 	color: primary,
 	height: 1.25,
+);
+
+TextStyle errorText = new TextStyle(
+	color: Colors.red[300],
 );
