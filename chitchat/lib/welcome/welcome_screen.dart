@@ -2,7 +2,9 @@ import "dart:ui";
 import "package:flutter/material.dart";
 import "package:url_launcher/url_launcher.dart";
 import "package:chitchat/common/style.dart" as Style;
+import "package:chitchat/common/auth.dart" as Auth;
 import "package:chitchat/common/common.dart";
+import "package:chitchat/chat/chat.dart";
 
 class WelcomeScreen extends StatefulWidget<_WelcomeScreenState> {
 
@@ -18,6 +20,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
 	String _errorText = "Incorrect details. Have you made a typo?";
 	bool _hasError = false;
+
+	void _attemptLogin(BuildContext context) {
+		_hasError = false;
+		String email = _emailController.text;
+		String password = _passwordController.text;
+		Auth.login(email: email, password: password)
+			.then((FirebaseUser user) => Navigator.of(context).push(
+				new MaterialPageRoute(
+					builder: (_) => ChatScreen()
+				)
+			))
+			.catchError((err) => _hasError = true);
+
+	}
 
 	@override
 	Widget build(BuildContext context) {
@@ -39,55 +55,51 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 						style: Style.welcomeStyle
 					),
 					new Expanded(child: new Column()),
-					new Form(
-						key: _formKey,
-						autovalidate: true,
-						child: new Column(
-							crossAxisAlignment: CrossAxisAlignment.stretch,
-							children: [
-								new TextFormField(
-									controller: _emailController,
-									decoration: new InputDecoration(
-										labelText: "Email",
-										labelStyle: new TextStyle(
-											color: Style.textFaint
-										)
+					new Column(
+						crossAxisAlignment: CrossAxisAlignment.stretch,
+						children: [
+							new TextField(
+								controller: _emailController,
+								decoration: new InputDecoration(
+									labelText: "Email",
+									labelStyle: new TextStyle(
+										color: Style.textFaint
 									)
-								),
-								new VerticalSpace(5.0),
-								new TextFormField(
-									controller: _passwordController,
-									obscureText: true,
-									decoration: new InputDecoration(
-										labelText: "Password",
-										labelStyle: new TextStyle(
-											color: Style.textFaint
-										)
-									)	
-								),
-								new VerticalSpace(7.0),
-								this._hasError
-									? new Text(_errorText, style: Style.errorText)
-									: null,
-								new VerticalSpace(7.0),
-								new StrongButton(
-									onPressed: () {},
-									text: "LOGIN"
-								),
-								new Container(
-									padding: const EdgeInsets.symmetric(vertical: 20.0),
-									child: new Column(
-										children: [
-											new Text("OR", style: new TextStyle(color: Style.textLight))
-										]
+								)
+							),
+							new VerticalSpace(5.0),
+							new TextField(
+								controller: _passwordController,
+								obscureText: true,
+								decoration: new InputDecoration(
+									labelText: "Password",
+									labelStyle: new TextStyle(
+										color: Style.textFaint
 									)
-								),
-								new LightButton(
-									onPressed: () {},
-									text: "CREATE ACCOUNT"
-								),
-							].where((i) => i != null).toList()
-						)
+								)
+							),
+							new VerticalSpace(7.0),
+							this._hasError
+								? new Text(_errorText, style: Style.errorText)
+								: null,
+							new VerticalSpace(7.0),
+							new StrongButton(
+								onPressed: () => _attemptLogin(context),
+								text: "LOGIN"
+							),
+							new Container(
+								padding: const EdgeInsets.symmetric(vertical: 20.0),
+								child: new Column(
+									children: [
+										new Text("OR", style: new TextStyle(color: Style.textLight))
+									]
+								)
+							),
+							new LightButton(
+								onPressed: () {},
+								text: "CREATE ACCOUNT"
+							),
+						].where((i) => i != null).toList()
 					)
 				]
 			)
