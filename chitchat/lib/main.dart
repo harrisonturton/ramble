@@ -11,10 +11,10 @@ class App extends StatelessWidget {
 			title: "ChitChat",
 			theme: ThemeData(
 				primaryColor: Style.primary,
-				accentColor: Style.primaryFaint,
+				hintColor: Style.textFaint
 			),
 			home: new Scaffold(
-				body: new WelcomeScreen()
+				body: new WelcomeScreen(),
 			)
 		);
 	}
