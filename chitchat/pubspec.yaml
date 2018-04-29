@@ -12,11 +12,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Backend
   google_sign_in: "^3.0.0"
   firebase_auth: "0.5.5"
+  firebase_database: "0.4.3"
+  # State management
+  redux: "^3.0.0"
+  redux_thunk: "^0.2.0"
+  redux_logging: "^0.3.0"
   # Helpers
   url_launcher: "3.0.0"
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
