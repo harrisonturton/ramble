@@ -22,22 +22,8 @@ Future<FirebaseUser> register({ String email, String password }) {
 	);
 }
 
-Future<String> getUsername(FirebaseUser user) {
-	var completer = new Completer();
-	completer.complete(
-		Firestore.instance.document("uid_to_user_data/${user.uid}")
-			.snapshots.first((DocumentSnapshot snap) => snap.data["username"])
-	);
-	return completer.future;
-}
 
-/*
-Future<String> getUsername(FirebaseUser user) =
-	Firestore.instance.document("uid_to_user_data/${user.uid}")
-	.snapshots.first((DocumentSnapshot snap) => snap.data["username"]);*/
-
-void connectPresence() async {
-	FirebaseUser user = await _auth.currentUser();
+void connectPresence(FirebaseUser user) async {
 	DatabaseReference statusRef = _db.reference().child("status/$user.uid");
 	Map onlineStatus = {
 		"status": "online",
@@ -47,7 +33,7 @@ void connectPresence() async {
 		"status": "offline",
 		"last_changed": ServerValue.timestamp
 	};
-	_db.reference().child(".info/connected").onValue((Event event) {
+	_db.reference().child(".info/connected").onValue.listen((Event event) {
 		// If not connected, don't do anything
 		if (event.snapshot.value == null) {
 			return;	

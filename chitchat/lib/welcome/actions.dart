@@ -13,15 +13,7 @@ class Login {
 	final String username;
 }
 
-void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next) async {
-	if (action is! Login) {
-		next(action);
-		return;
-	}
-
-	String username = await Firebase.getUsername(action.user);
-	next(new Login(
-		user: action.user,
-		username: username
-	));
+class AddChatroom {
+	AddChatroom({ this.chatroom });
+	final ChatRoom chatroom;
 }

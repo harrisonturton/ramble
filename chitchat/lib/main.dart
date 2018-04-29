@@ -10,7 +10,8 @@ import "package:flutter_redux/flutter_redux.dart";
 void main() {
 	final store = new Store(
 		appReducer,
-		initialState: new AppState.initial()
+		initialState: new AppState.initial(),
+		middleware: [LoginMiddleware]
 	);
 	runApp(new App(store));
 }
