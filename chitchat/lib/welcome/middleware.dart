@@ -22,7 +22,28 @@ void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next)
 	));
 
 	Firestore.instance.collection("uid_to_chats").document(action.user.uid).snapshots.listen((DocumentSnapshot snapshot) {
-		print("RECIEVED SNAPSHOT");
-		print(snapshot.data);
+		String key = snapshot.data.keys.first;
+		Map rawData = snapshot.data[key];
+		store.dispatch(new AddChatroom(
+			new ChatRoom(
+				title: rawData["title"],
+				recentMessage: rawData["recent_message"],
+				timestamp: rawData["timestamp"]
+			)
+		));
 	});
+
+	// Gets all documents ONCE, need to somehow stream updates? Possibly poll, maybe put this on the user?
+	/*Firestore.instance.collection("uid_to_chats").document(action.user.uid).get().then((DocumentSnapshot snapshot) {
+		print(snapshot.data);
+		/*String key = snapshot.data.keys.first;
+		Map rawData = snapshot.data[key];
+		store.dispatch(new AddChatroom(
+			chatroom: new ChatRoom(
+				title: rawData["title"],
+				recentMessage: rawData["recent_message"],
+				timestamp: rawData["timestamp"]
+			)
+		));*/
+	});*/
 }

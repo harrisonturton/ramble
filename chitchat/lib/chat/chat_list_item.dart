@@ -4,11 +4,11 @@ import "package:chitchat/common/common.dart";
 
 class ChatListItem extends StatelessWidget {
 	ChatListItem({
-		this.name="Harrison Turton",
+		this.title="Harrison Turton",
 		this.timestamp="3 mins",
 		this.recentMessage="yoyo anyone fence jumping"
 	});
-	final String name;
+	final String title;
 	final String timestamp;
 	final String recentMessage;
 
@@ -28,7 +28,7 @@ class ChatListItem extends StatelessWidget {
 						crossAxisAlignment: CrossAxisAlignment.start,
 						children: [
 							new Text(
-								this.name,
+								this.title,
 								style: Style.chatName
 							),
 							new VerticalSpace(2.5),

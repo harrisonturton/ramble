@@ -14,6 +14,6 @@ class Login {
 }
 
 class AddChatroom {
-	AddChatroom({ this.chatroom });
+	AddChatroom(this.chatroom);
 	final ChatRoom chatroom;
 }

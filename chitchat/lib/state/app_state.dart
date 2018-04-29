@@ -30,10 +30,12 @@ class AppState {
 class ChatRoom {
 	ChatRoom({
 		this.title,
-		this.recentMessage
+		this.recentMessage,
+		this.timestamp
 	});
 	final String title;
 	final String recentMessage;
+	final String timestamp;
 }
 
 class User {
