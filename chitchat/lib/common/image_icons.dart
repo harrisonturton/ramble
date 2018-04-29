@@ -1,0 +1,9 @@
+final String create = "assets/icons/create.png";
+final String bell_outline = "assets/icons/bell_outline.png";
+final String bell_solid = "assets/icons/bell_solid.png";
+final String home_outline = "assets/icons/home_outline.png";
+final String home_solid = "assets/icons/home_solid.png";
+final String chat_outline = "assets/icons/chat_outline.png";
+final String chat_solid = "assets/icons/chat_solid.png";
+final String person_outline = "assets/icons/person_outline.png";
+final String person_solid = "assets/icons/person_solid.png";

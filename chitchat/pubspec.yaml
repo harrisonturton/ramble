@@ -33,6 +33,16 @@ flutter:
   # assets:
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
+  assets:
+    - assets/icon/create.png
+    - assets/icon/home_solid.png
+    - assets/icon/home_outline.png
+    - assets/icon/person_solid.png
+    - assets/icon/person_outline.png
+    - assets/icon/bell_solid.png
+    - assets/icon/bell_outline.png
+    - assets/icon/chat_solid.png
+    - assets/icon/chat_outline.png
   fonts:
     - family: Hind
       fonts:
