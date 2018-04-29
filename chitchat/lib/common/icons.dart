@@ -1,1 +1,1 @@
-final String icon_create = "assets/icons/create.png";
+final String create = "assets/icons/create.png";

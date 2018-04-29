@@ -4,7 +4,8 @@ import "package:url_launcher/url_launcher.dart";
 import "package:chitchat/common/style.dart" as Style;
 import "package:chitchat/common/auth.dart" as Auth;
 import "package:chitchat/common/common.dart";
-import "package:chitchat/chat/chat.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:chitchat/main_screen.dart";
 
 class WelcomeScreen extends StatefulWidget<_WelcomeScreenState> {
 
@@ -23,16 +24,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
 	void _attemptLogin(BuildContext context) {
 		_hasError = false;
+		setState(() {});
 		String email = _emailController.text;
 		String password = _passwordController.text;
+		if (email == "" && password == "") {
+			email = "harrisonturton@gmail.com";
+			password = "test123";
+		}
 		Auth.login(email: email, password: password)
-			.then((FirebaseUser user) => Navigator.of(context).push(
+			.then((_) => Navigator.of(context).push(
 				new MaterialPageRoute(
-					builder: (_) => ChatScreen()
+					builder: (_) => new MainScreen()
 				)
 			))
-			.catchError((err) => _hasError = true);
-
+			.catchError((err) =>_hasError = true);
 	}
 
 	@override
