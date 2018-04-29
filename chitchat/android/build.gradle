@@ -2,11 +2,15 @@ buildscript {
     repositories {
         google()
         jcenter()
+		maven {
+			url "https://maven.google.com" // Google's Maven repository
+		}
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-		classpath 'com.google.gms:google-services:3.2.1'
+		// firebase_auth says 3.2.1, firebase console says 3.2.0
+		classpath 'com.google.gms:google-services:3.2.0'
     }
 }
 
