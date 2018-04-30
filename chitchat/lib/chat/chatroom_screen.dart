@@ -2,6 +2,7 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:chitchat/state/state.dart";
 import "package:chitchat/common/style.dart" as Style;
+import "package:chitchat/common/common.dart";
 import "package:chitchat/chat/chat.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 
@@ -22,6 +23,9 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 
 	void _sendMessage() {
 		print("Sending message ${_controller.text}");
+		if (_controller.text == "") {
+			return;
+		}
 		// Need to restructure database -- put messages in a collection
 		Firestore.instance.collection("chatroom_id_to_messages/${widget.chatroom.id}/messages").add({
 			"author": "Harrison Turton",
@@ -30,6 +34,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 		}).then((_) {
 			print("Added message ${_controller.text}");
 		});
+		_controller.clear();
 	}
 
 	@override
@@ -54,6 +59,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 
 	Widget _buildBody() {
 		return new Container(
+			color: const Color.fromRGBO(250, 250, 250, 1.0),
 			padding: const EdgeInsets.all(15.0),
 			child: new Column(
 				children: [
@@ -65,22 +71,10 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 								)).toList()
 						)
 					),
-					new Container(
-						child: new Row(
-							children: [
-								new Flexible(
-									child: new TextField(
-										controller: _controller
-									)
-								),
-								new InkWell(
-									onTap: _sendMessage,
-									child: new Icon(Icons.send)
-								)
-							]
-						)
+					new StadiumInput(
+						controller: _controller,
+						onTap: _sendMessage
 					)
-					// Input here
 				]
 			)
 		);
@@ -101,8 +95,10 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 		return new Scaffold(
 			backgroundColor: Colors.white,
 			appBar: new AppBar(
-				title: new Text(widget.chatroom.title),
-				backgroundColor: Colors.white,
+				title: new Text(
+					widget.chatroom.title,
+				),
+				backgroundColor: const Color.fromRGBO(250, 250, 250, 1.0),
 				elevation: 0.0
 			),
 			body: body

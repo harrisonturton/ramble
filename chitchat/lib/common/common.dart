@@ -5,3 +5,4 @@ export "vertical_space.dart";
 export "firebase.dart";
 export "image_icons.dart";
 export "search_bar.dart";
+export "stadium_input.dart";
