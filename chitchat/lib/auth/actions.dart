@@ -13,8 +13,7 @@ class Login {
 	final String username;
 }
 
-class AddChatroom {
-	AddChatroom({this.key, this.chatroom});
-	final String key;
-	final ChatRoom chatroom;
+class ReplaceChatrooms {
+	ReplaceChatrooms({this.chatrooms});
+	final Map<String, ChatRoom> chatrooms;
 }

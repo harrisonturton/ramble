@@ -18,8 +18,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 	@override
 	void initState() {
 		super.initState();
-		_controller = new TabController(length: 3, vsync: this);
-		_currentName = _tabNames[0];
+		_controller = new TabController(length: 3, initialIndex: 1, vsync: this);
+		_currentName = _tabNames[1];
 		_controller.addListener(_handleChangeTab);
 	}
 

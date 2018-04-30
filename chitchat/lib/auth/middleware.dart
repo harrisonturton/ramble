@@ -21,18 +21,21 @@ void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next)
 		username: username
 	));
 
-	/*Firestore.instance.collection("uid_to_chats").document(action.user.uid).snapshots.listen((DocumentSnapshot snapshot) {
-		String key = snapshot.data.keys.first;
-		Map rawData = snapshot.data[key];
-		store.dispatch(new AddChatroom(
-			new ChatRoom(
+	Firestore.instance.collection("uid_to_chats").document(action.user.uid).snapshots.listen((DocumentSnapshot snapshot) {
+		print("Snapshot: ${snapshot.data}");
+		Map<String, ChatRoom> newChatrooms = new Map();
+		snapshot.data.keys.forEach((key) {
+			Map rawData = snapshot.data[key];
+			newChatrooms.putIfAbsent(key, () => new ChatRoom(
 				title: rawData["title"],
 				recentMessage: rawData["recent_message"],
-				timestamp: rawData["timestamp"]
-			)
-		));
-	});*/
+				timestamp: rawData["timestamp"],
+			));
+		});
+		store.dispatch(new ReplaceChatrooms(chatrooms: newChatrooms));
+	});
 
+	/*
 	// Gets all documents ONCE, need to somehow stream updates? Possibly poll, maybe put this on the user?
 	Firestore.instance.collection("uid_to_chats").document(action.user.uid).get().then((DocumentSnapshot snapshot) {
 		print(snapshot.data);
@@ -47,14 +50,5 @@ void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next)
 				)
 			));
 		});
-		/*String key = snapshot.data.keys.first;
-		Map rawData = snapshot.data[key];
-		store.dispatch(new AddChatroom(
-			chatroom: new ChatRoom(
-				title: rawData["title"],
-				recentMessage: rawData["recent_message"],
-				timestamp: rawData["timestamp"]
-			)
-		));*/
-	});
+	});*/
 }

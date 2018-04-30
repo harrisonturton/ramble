@@ -4,7 +4,7 @@ import "actions.dart";
 
 List<Reducer<AppState>> reducers = [
 	new TypedReducer<AppState, Login>(login),
-	new TypedReducer<AppState, AddChatroom>(addChatroom),
+	new TypedReducer<AppState, ReplaceChatrooms>(replaceChatrooms),
 ];
 
 AppState login(AppState prevState, Login action) {
@@ -18,12 +18,8 @@ AppState login(AppState prevState, Login action) {
 	);
 }
 
-AppState addChatroom(AppState prevState, AddChatroom action) {
-	print("ADD CHATROOM REDUCER");
-	Map<String, ChatRoom> newRooms = Map.from(prevState.chatrooms);
-	newRooms.remove(action.key);
-	newRooms.putIfAbsent(action.key, () => action.chatroom);
+AppState replaceChatrooms(AppState prevState, ReplaceChatrooms action) {
 	return prevState.copyWith(
-		chatrooms: Map.unmodifiable(newRooms)
+		chatrooms: Map.unmodifiable(action.chatrooms)
 	);
 }
