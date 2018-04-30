@@ -4,8 +4,8 @@ import "package:chitchat/state/state.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 
 class ChatroomScreen extends StatefulWidget<_ChatroomScreenState> {
-	ChatroomScreen({this.id});
-	final String id;
+	ChatroomScreen({this.chatroom});
+	final Chatroom chatroom;
 
 	_ChatroomScreenState createState() => new _ChatroomScreenState();
 
@@ -24,7 +24,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 
 	void _getMessages() async {
 		Firestore.instance.collection("chatroom_id_to_messages")
-			.document(widget.id).snapshots.listen((DocumentSnapshot snapshot) {
+			.document(widget.chatroom.id).snapshots.listen((DocumentSnapshot snapshot) {
 				print(snapshot.data);
 				List<Message> newMessages = new List();
 				snapshot.data["messages"].forEach((data) {
@@ -51,8 +51,11 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 			);
 		}
 		return new Scaffold(
+			backgroundColor: Colors.white,
 			appBar: new AppBar(
-				title: new Text("Chatroom ${widget.id}"),
+				title: new Text(widget.chatroom.title),
+				backgroundColor: Colors.white,
+				elevation: 0.0
 			),
 			body: body
 		);

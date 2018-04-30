@@ -1,23 +1,18 @@
 import "package:chitchat/common/style.dart" as Style;
 import "package:flutter/material.dart";
 import "package:chitchat/common/common.dart";
+import "package:chitchat/state/state.dart";
 import "package:chitchat/chat/chat.dart";
 
 class ChatListItem extends StatelessWidget {
 	ChatListItem({
-		this.id,
-		this.title="Harrison Turton",
-		this.timestamp="3 mins",
-		this.recentMessage="yoyo anyone fence jumping"
+		this.chatroom,
 	});
-	final String id;
-	final String title;
-	final String timestamp;
-	final String recentMessage;
+	final Chatroom chatroom;
 
 	void _openChatroom(BuildContext context) {
 		Navigator.of(context).push(new MaterialPageRoute(
-			builder: (_) => new ChatroomScreen(id: id)
+			builder: (_) => new ChatroomScreen(chatroom: chatroom)
 		));
 	}
 
@@ -39,12 +34,12 @@ class ChatListItem extends StatelessWidget {
 							crossAxisAlignment: CrossAxisAlignment.start,
 							children: [
 								new Text(
-									this.title,
+									chatroom.title,
 									style: Style.chatName
 								),
 								new VerticalSpace(2.5),
 								new Text(
-									this.recentMessage,
+									chatroom.recentMessage,
 									style: new TextStyle(
 										color: const Color.fromRGBO(128, 137, 153, 1.0)
 									)
@@ -52,7 +47,7 @@ class ChatListItem extends StatelessWidget {
 							]
 						),
 						new Text(
-							this.timestamp,
+							chatroom.timestamp,
 							style: new TextStyle(
 								color: const Color.fromRGBO(128, 137, 153, 1.0)
 							)

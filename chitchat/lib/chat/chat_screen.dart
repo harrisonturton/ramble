@@ -19,10 +19,7 @@ class ChatScreen extends StatelessWidget {
 					children: store.state.chatrooms.keys.map((String key) {
 						Chatroom room = store.state.chatrooms[key];
 						return new ChatListItem(
-							id: key,
-							title: room.title,
-							recentMessage: room.recentMessage,
-							timestamp: room.timestamp
+							chatroom: room,
 						);
 					}).toList()
 				);
