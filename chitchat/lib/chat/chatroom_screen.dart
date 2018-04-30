@@ -1,6 +1,7 @@
 import "dart:async";
 import "package:flutter/material.dart";
 import "package:chitchat/state/state.dart";
+import "package:chitchat/common/style.dart" as Style;
 import "package:chitchat/chat/chat.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 
@@ -16,6 +17,13 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 
 	bool isLoaded = false;
 	List<Message> messages = null;
+
+	TextEditingController _controller = new TextEditingController();
+
+	void _sendMessage() {
+		print("Sending message ${_controller.text}");
+		// Need to restructure database -- put messages in a collection
+	}
 
 	@override
 	void initState() {
@@ -54,6 +62,21 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 								)).toList()
 						)
 					),
+					new Container(
+						child: new Row(
+							children: [
+								new Flexible(
+									child: new TextField(
+										controller: _controller
+									)
+								),
+								new GestureDetector(
+									onTap: _sendMessage,
+									child: new Icon(Icons.send)
+								)
+							]
+						)
+					)
 					// Input here
 				]
 			)
@@ -63,7 +86,11 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	@override
 	Widget build(BuildContext context) {
 		Widget body = new Center(
-			child: const Text("Loading...")
+			child: new CircularProgressIndicator(
+				value: null,
+				valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
+				strokeWidth: 2.5
+			)
 		);
 		if (isLoaded) {
 			body = _buildBody();

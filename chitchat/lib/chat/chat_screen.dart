@@ -58,7 +58,11 @@ class _ChatScreenState extends State<ChatScreen> {
 			);
 		} else {
 			return new Center(
-				child: const Text("Loading...")
+				child: new CircularProgressIndicator(
+					value: null,
+					valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
+					strokeWidth: 2.5
+				)
 			);
 		}
 	}

@@ -38,6 +38,61 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 			_currentName = _tabNames[_controller.index];
 		});
 	}
+	Widget _getNewsfeedAppBar() {
+		return new SliverAppBar(
+			elevation: 0.0,
+			pinned: true,
+			floating: true,
+			forceElevated: true,
+			backgroundColor: Colors.transparent,
+			title: new Padding(
+				padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+				child: new Text(
+					"Newsfeed",
+					style: new TextStyle(
+						fontSize: 24.0,
+						fontWeight: FontWeight.w600,
+					)
+				),
+			),
+		);
+	}
+
+	Widget _getMessagesAppBar() {
+		return new SliverAppBar(
+			elevation: 0.0,
+			//pinned: true,
+			//floating: true,
+			//forceElevated: true,
+			backgroundColor: Colors.white,
+			title: new Padding(
+				padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+				child: new Text(
+					"Messages",
+					style: new TextStyle(
+						fontSize: 24.0,
+						fontWeight: FontWeight.w600,
+					)
+				),
+			),
+			actions: [
+				new Container(
+					padding: const EdgeInsets.only(
+						top: 20.0,
+						right: 10.0
+					),
+					child: new GestureDetector(
+						onTap: () => print("Create new Chatroom..."),
+						child: new Image.asset(
+							create,
+							color: Style.primary,
+							width: 35.0
+						)
+					)
+				)
+			],
+		);
+	}
 
 	@override
 	Widget build(BuildContext context) {
@@ -81,27 +136,17 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 			),
 			body: new NestedScrollView(
 				headerSliverBuilder: (BuildContext context, bool isScrolled) {
-					return [
-						new SliverAppBar(
-							elevation: 0.0,
-							floating: true,
-							pinned: true,
-							forceElevated: true,
-							snap: true,
-							backgroundColor: Colors.white,
-							title: new Padding(
-								padding: const EdgeInsets.only(left: 10.0, top: 20.0),
-								child: new Text(
-									_currentName,
-									style: new TextStyle(
-										fontSize: 24.0,
-										color: Colors.grey[900],
-										fontWeight: FontWeight.w600,
-									)
-								)
-							),
-						),
-					];
+					switch (_controller.index) {
+						case 0:
+							return [ _getNewsfeedAppBar() ];
+							break;
+						case 1:
+							return [ _getMessagesAppBar() ];
+							break;
+						default:
+							return [ _getMessagesAppBar() ];
+							break;
+					}
 				},
 				body: new TabBarView(
 					controller: _controller,
