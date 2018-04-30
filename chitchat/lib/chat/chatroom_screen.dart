@@ -32,19 +32,15 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	}
 
 	void _getMessages() async {
-		Firestore.instance.collection("chatroom_id_to_messages")
-			.document(widget.chatroom.id).snapshots.listen((DocumentSnapshot snapshot) {
-				print(snapshot.data);
-				List<Message> newMessages = new List();
-				snapshot.data["messages"].forEach((data) {
-					newMessages.add(new Message(
-						author: data["author"],
-						content: data["content"]
-					));
-				});
+		Firestore.instance.collection("chatroom_id_to_messages/${widget.chatroom.id}/messages")
+			.snapshots.listen((QuerySnapshot query) {
+				print("Inside collection...");
 				setState(() {
-					messages = newMessages;
 					isLoaded = true;
+					this.messages = query.documents.map((DocumentSnapshot snapshot) => new Message(
+						author: snapshot.data["author"],
+						content: snapshot.data["content"],
+					)).toList();
 				});
 			});
 	}
