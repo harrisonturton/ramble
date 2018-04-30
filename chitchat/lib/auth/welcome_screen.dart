@@ -23,7 +23,7 @@ class WelcomeScreen extends StatelessWidget {
 			store.dispatch(new Login(user: user));
 			Navigator.of(context).pushAndRemoveUntil(
 				new MaterialPageRoute(
-					builder: (_) => new MainScreen()
+					builder: (_) => new MainScreen(store: store)
 				),
 				(Route<dynamic> route) => false
 			);

@@ -4,44 +4,62 @@ import "package:chitchat/common/style.dart" as Style;
 import "package:flutter/material.dart";
 import "package:chitchat/common/common.dart";
 import "package:chitchat/chat/chat.dart";
-
-import "package:redux/redux.dart";
 import "package:chitchat/state/state.dart";
-import "package:flutter_redux/flutter_redux.dart";
 
-class ChatScreen extends StatelessWidget {
+import "package:firebase_auth/firebase_auth.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
 
-	Widget build(BuildContext context) {
-		return new StoreConnector<AppState, Store<AppState>>(
-			converter: (store) => store,
-			builder: (context, store) {
-				return new ListView(
-					children: store.state.chatrooms.keys.map((String key) {
-						Chatroom room = store.state.chatrooms[key];
-						return new ChatListItem(
-							chatroom: room,
-						);
-					}).toList()
-				);
-			}
-		);
-	}
+class ChatScreen extends StatefulWidget<_ChatScreenState> {
+	ChatScreen(this.firebaseUser);
+	final FirebaseUser firebaseUser;
+
+	@override
+	_ChatScreenState createState() => new _ChatScreenState();
 }
 
-/*
-						new Container(
-							padding: const EdgeInsets.symmetric(
-								vertical: 15.0,
-								horizontal: 25.0
-							),
-							child: new Row(
-								mainAxisAlignment: MainAxisAlignment.spaceBetween,
-								children: [
-									new Text(
-										"ChitChat",
-										style: Style.header
-									),
-									new Icon(Icons.search, color: Style.text),
-								]
-							)
-						),*/
+class _ChatScreenState extends State<ChatScreen> {
+
+	List<Chatroom> chatrooms = null;
+	bool isLoaded = false;
+
+	@override
+	void initState() {
+		print("initializing chat screen state...");
+		_getChatrooms();
+	}
+
+	void _getChatrooms() async {
+		Firestore.instance.collection("uid_to_chats")
+			.document(widget.firebaseUser.uid).snapshots.listen((DocumentSnapshot snapshot) {
+				List<Chatroom> newChatrooms = new List();
+				snapshot.data.keys.forEach((key) {
+					Map rawData = snapshot.data[key];
+					newChatrooms.add(new Chatroom(
+						id: key,
+						title: rawData["title"],
+						recentMessage: rawData["recent_message"],
+						timestamp: rawData["timestamp"],
+					));
+				});
+				setState(() {
+					chatrooms = newChatrooms;
+					isLoaded = true;
+				});
+			});
+	}
+
+	Widget build(BuildContext context) {
+		if (isLoaded && chatrooms != null) {
+			return new ListView(
+				children: chatrooms
+					.map((Chatroom chatroom) => new ChatListItem(
+						chatroom: chatroom
+					)).toList()
+			);
+		} else {
+			return new Center(
+				child: const Text("Loading...")
+			);
+		}
+	}
+}

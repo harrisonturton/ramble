@@ -2,8 +2,12 @@ import "package:flutter/material.dart";
 import "package:chitchat/chat/chat.dart";
 import "package:chitchat/common/style.dart" as Style;
 import "package:chitchat/common/common.dart";
+import "package:chitchat/state/state.dart";
+import "package:redux/redux.dart";
 
 class MainScreen extends StatefulWidget<_MainScreenState> {
+	MainScreen({this.store});
+	final Store<AppState> store;
 
 	@override
 	_MainScreenState createState() => new _MainScreenState();
@@ -37,6 +41,9 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
 	@override
 	Widget build(BuildContext context) {
+		print("BUILDING MAIN");
+		print(widget.store.state.isLoggedIn);
+		print(widget.store.state.user.firebaseUser.uid);
 		return new Scaffold(
 			backgroundColor: Colors.white,
 			bottomNavigationBar: new TabBar(
@@ -100,7 +107,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 					controller: _controller,
 					children: [
 						new Text("Newsfeed"),
-						new ChatScreen(),
+						new ChatScreen(widget.store.state.user.firebaseUser),
 						new Text("Notifactions"),
 					]
 				)
