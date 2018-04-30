@@ -40,6 +40,15 @@ class Chatroom {
 	final String timestamp;
 }
 
+class Message {
+	Message({
+		this.author,
+		this.content
+	});
+	final String author;
+	final String content;
+}
+
 class User {
 	User({
 		this.firebaseUser,

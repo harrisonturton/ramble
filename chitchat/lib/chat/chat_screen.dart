@@ -9,13 +9,7 @@ import "package:redux/redux.dart";
 import "package:chitchat/state/state.dart";
 import "package:flutter_redux/flutter_redux.dart";
 
-class ChatScreen extends StatefulWidget<_ChatScreenState> {
-
-	@override
-	_ChatScreenState createState () => new _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
+class ChatScreen extends StatelessWidget {
 
 	Widget build(BuildContext context) {
 		return new StoreConnector<AppState, Store<AppState>>(

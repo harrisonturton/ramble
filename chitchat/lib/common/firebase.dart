@@ -22,7 +22,6 @@ Future<FirebaseUser> register({ String email, String password }) {
 	);
 }
 
-
 void connectPresence(FirebaseUser user) async {
 	DatabaseReference statusRef = _db.reference().child("status/$user.uid");
 	Map onlineStatus = {
