@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:chitchat/common/style.dart" as Style;
-import "package:chitchat/welcome/welcome.dart";
+import "package:chitchat/auth/auth.dart";
 import "main_screen.dart";
 
 import "package:redux/redux.dart";
