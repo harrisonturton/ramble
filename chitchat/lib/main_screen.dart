@@ -72,19 +72,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 					)
 				]
 			),
-			body: new TabBarView(
-				controller: _controller,
-				children: [
-					new Text("Newsfeed"),
-					new ChatScreen(),
-					new Text("Notifactions"),
-				]
-			)
-		);
-	}
-}
-
-/*
 			body: new NestedScrollView(
 				headerSliverBuilder: (BuildContext context, bool isScrolled) {
 					return [
@@ -117,4 +104,17 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 						new Text("Notifactions"),
 					]
 				)
-			),*/
+			),
+			//body: new TabBarView(
+			//	controller: _controller,
+			//	children: [
+			//		new Text("Newsfeed"),
+			//		new ChatScreen(),
+			//		new Text("Notifactions"),
+			//	]
+			//)
+		);
+	}
+}
+
+

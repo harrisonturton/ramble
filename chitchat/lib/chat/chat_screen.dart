@@ -1,3 +1,5 @@
+import "dart:math";
+import "dart:ui";
 import "package:chitchat/common/style.dart" as Style;
 import "package:flutter/material.dart";
 import "package:chitchat/common/common.dart";
@@ -7,51 +9,30 @@ import "package:redux/redux.dart";
 import "package:chitchat/state/state.dart";
 import "package:flutter_redux/flutter_redux.dart";
 
-class ChatScreen extends StatelessWidget {
-	Widget build(BuildContext context) {
-		return new NestedScrollView(
-			headerSliverBuilder: (BuildContext context, bool isScrolled) {
-				return [
-					new SliverAppBar(
-						elevation: 0.0,
-						floating: true,
-						//pinned: true,
-						//snap: true,
-						backgroundColor: Colors.white,
-						title: new Padding(
-							padding: const EdgeInsets.only(left: 10.0, top: 15.0),
-							child: new Text(
-								"Messages",
-								style: new TextStyle(
-									fontSize: 30.0,
-									color: Colors.grey[900],
-									fontWeight: FontWeight.w600,
-								)
-							)
-						),
-					),
-				];
-			},
-			//body: new ListView(
-			//	children: new List<int>.generate(50, (i) => i).map((i) => new ChatListItem()).toList()
-			//)
-			body: new StoreConnector<AppState, Store<AppState>>(
-				converter: (store) => store,
-				builder: (context, store) {
-					return new ListView(
-						children: store.state.chatrooms.map((ChatRoom room) {
-							print(room);
-							return new ChatListItem(
-								title: room.title,
-								recentMessage: room.recentMessage,
-								timestamp: room.timestamp
-							);
-						}).toList()
-					);
-				}
-			)
-		);
+class ChatScreen extends StatefulWidget<_ChatScreenState> {
 
+	@override
+	_ChatScreenState createState () => new _ChatScreenState();
+}
+
+class _ChatScreenState extends State<ChatScreen> {
+
+	Widget build(BuildContext context) {
+		return new StoreConnector<AppState, Store<AppState>>(
+			converter: (store) => store,
+			builder: (context, store) {
+				return new ListView(
+					children: store.state.chatrooms.keys.map((String key) {
+						ChatRoom room = store.state.chatrooms[key];
+						return new ChatListItem(
+							title: room.title,
+							recentMessage: room.recentMessage,
+							timestamp: room.timestamp
+						);
+					}).toList()
+				);
+			}
+		);
 	}
 }
 

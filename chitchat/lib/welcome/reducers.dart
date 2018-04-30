@@ -20,9 +20,10 @@ AppState login(AppState prevState, Login action) {
 
 AppState addChatroom(AppState prevState, AddChatroom action) {
 	print("ADD CHATROOM REDUCER");
-	List<ChatRoom> newRooms = List.from(prevState.chatrooms);
-	newRooms.add(action.chatroom);
+	Map<String, ChatRoom> newRooms = Map.from(prevState.chatrooms);
+	newRooms.remove(action.key);
+	newRooms.putIfAbsent(action.key, () => action.chatroom);
 	return prevState.copyWith(
-		chatrooms: List.unmodifiable(newRooms)
+		chatrooms: Map.unmodifiable(newRooms)
 	);
 }

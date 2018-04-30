@@ -6,18 +6,18 @@ class AppState {
 		this.user,
 		this.isLoggedIn,
 	});
-	final List<ChatRoom> chatrooms;
+	final Map<String, ChatRoom> chatrooms;
 	final bool isLoggedIn;
 	final User user;
 
 	factory AppState.initial() => new AppState(
-		chatrooms: List.unmodifiable([]),
+		chatrooms: Map.unmodifiable({}),
 		user: null,
 		isLoggedIn: false
 	);
 
 	AppState copyWith({
-		List<ChatRoom> chatrooms,
+		Map<String, ChatRoom> chatrooms,
 		bool isLoggedIn,
 		User user,
 	}) => new AppState(
