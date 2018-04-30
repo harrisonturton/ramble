@@ -45,5 +45,5 @@ TextStyle textHeavy = new TextStyle(
 final chatName = new TextStyle(
 	fontWeight: FontWeight.w400,
 	fontSize: 18.0,
-	color: Colors.grey[800]
+	color: Colors.grey[850]
 );

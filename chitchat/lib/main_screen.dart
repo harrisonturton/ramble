@@ -39,6 +39,52 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 	Widget build(BuildContext context) {
 		return new Scaffold(
 			backgroundColor: Colors.white,
+			bottomNavigationBar: new TabBar(
+				controller: _controller,
+				labelColor: Style.primary,
+				unselectedLabelColor: Style.textLight,
+				indicatorColor: Style.primary,
+				indicatorPadding: const EdgeInsets.only(
+					left: 30.0, right: 30.0,
+					bottom: 50.0
+				),
+				tabs: [
+					new Tab(
+						icon: new Image.asset(
+							_controller.index == 0 ? home_solid : home_outline,
+							color: _controller.index == 0 ? Style.primary : Style.textLight,
+							width: 30.0
+						)
+					),
+					new Tab(
+						icon: new Image.asset(
+							_controller.index == 1 ? chat_solid : chat_outline,
+							color: _controller.index == 1 ? Style.primary : Style.textLight,
+							width: 30.0
+						)
+					),
+					new Tab(
+						icon: new Image.asset(
+							_controller.index == 2 ? person_solid : person_outline,
+							color: _controller.index == 2 ? Style.primary : Style.textLight,
+							width: 30.0
+						)
+					)
+				]
+			),
+			body: new TabBarView(
+				controller: _controller,
+				children: [
+					new Text("Newsfeed"),
+					new ChatScreen(),
+					new Text("Notifactions"),
+				]
+			)
+		);
+	}
+}
+
+/*
 			body: new NestedScrollView(
 				headerSliverBuilder: (BuildContext context, bool isScrolled) {
 					return [
@@ -60,36 +106,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 									)
 								)
 							),
-							bottom: new TabBar(
-								controller: _controller,
-								labelColor: Style.primary,
-								unselectedLabelColor: Style.textLight,
-								indicatorColor: Style.primary,
-								indicatorPadding: const EdgeInsets.symmetric(horizontal: 15.0),
-								tabs: [
-									new Tab(
-										icon: new Image.asset(
-											_controller.index == 0 ? home_solid : home_outline,
-											color: _controller.index == 0 ? Style.primary : Style.textLight,
-											width: 30.0
-										)
-									),
-									new Tab(
-										icon: new Image.asset(
-											_controller.index == 1 ? chat_solid : chat_outline,
-											color: _controller.index == 1 ? Style.primary : Style.textLight,
-											width: 30.0
-										)
-									),
-									new Tab(
-										icon: new Image.asset(
-											_controller.index == 2 ? person_solid : person_outline,
-											color: _controller.index == 2 ? Style.primary : Style.textLight,
-											width: 30.0
-										)
-									)
-								]
-							)
 						),
 					];
 				},
@@ -101,7 +117,4 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 						new Text("Notifactions"),
 					]
 				)
-			),
-		);
-	}
-}
+			),*/

@@ -6,6 +6,7 @@ import "main_screen.dart";
 import "package:redux/redux.dart";
 import "package:chitchat/state/state.dart";
 import "package:flutter_redux/flutter_redux.dart";
+import "main_screen.dart";
 
 void main() {
 	final store = new Store(
@@ -29,9 +30,6 @@ class App extends StatelessWidget {
 				theme: ThemeData(
 					primaryColor: Style.primary,
 					hintColor: Style.textFaint,
-					primaryTextTheme: new TextTheme(
-						title: Style.header,
-					)
 				),
 				home: new Scaffold(
 					body: new WelcomeScreen(),
