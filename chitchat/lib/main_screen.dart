@@ -83,11 +83,11 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 							snap: true,
 							backgroundColor: Colors.white,
 							title: new Padding(
-								padding: const EdgeInsets.only(left: 10.0),
+								padding: const EdgeInsets.only(left: 10.0, top: 20.0),
 								child: new Text(
 									_currentName,
 									style: new TextStyle(
-										fontSize: 20.0,
+										fontSize: 24.0,
 										color: Colors.grey[900],
 										fontWeight: FontWeight.w600,
 									)

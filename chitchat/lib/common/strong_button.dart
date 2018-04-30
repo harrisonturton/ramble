@@ -15,7 +15,7 @@ class StrongButton extends StatelessWidget {
 			onPressed: this.onPressed,
 			color: Style.primary,
 			textColor: Colors.white,
-			shape: new Border.all(color: Style.primary),
+			shape: new StadiumBorder(),
 			child: new Text(this.text)
 		);
 	}

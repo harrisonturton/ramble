@@ -12,31 +12,14 @@ import "package:redux/redux.dart";
 import "package:flutter_redux/flutter_redux.dart";
 import "actions.dart";
 
-class WelcomeScreen extends StatefulWidget<_WelcomeScreenState> {
-
-	@override
-	_WelcomeScreenState createState() => new _WelcomeScreenState();
-}
-
-class _WelcomeScreenState extends State<WelcomeScreen> {
-	
-	final _formKey = new GlobalKey<FormState>();
-	final _emailController = new TextEditingController();
-	final _passwordController = new TextEditingController();
-
-	String _errorText = "Incorrect details. Have you made a typo?";
-	bool _hasError = false;
+class WelcomeScreen extends StatelessWidget {
 
 	void _attemptLogin(BuildContext context, Store<AppState> store) {
-		_hasError = false;
-		setState(() {});
-		String email = _emailController.text;
-		String password = _passwordController.text;
-		if (email == "" && password == "") {
-			email = "harrisonturton@gmail.com";
-			password = "test123";
-		}
-		Firebase.login(email: email, password: password).then((FirebaseUser user) {
+		MaterialPageRoute.debugEnableFadingRoutes = true;
+		Firebase.login(
+			email: "harrisonturton@gmail.com",
+			password: "test123"
+		).then((FirebaseUser user) {
 			store.dispatch(new Login(user: user));
 			Navigator.of(context).pushAndRemoveUntil(
 				new MaterialPageRoute(
@@ -44,7 +27,31 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 				),
 				(Route<dynamic> route) => false
 			);
-		}).catchError((err) =>_hasError = true);
+		}).catchError((err) => print("LOGIN ERROR: ${err}"));
+	}
+
+	Widget _buildText(String header, BuildContext context, { bool hasHint=true }) {
+		double height = MediaQuery.of(context).size.height;
+		return new Container(
+			padding: const EdgeInsets.symmetric(horizontal: 30.0),
+			child: new Column(
+				crossAxisAlignment: CrossAxisAlignment.start,
+				children: [
+					new VerticalSpace(height / 14.0),
+					new VerticalSpace(15.0),
+					new Text(
+						header,
+						style: Style.welcomeStyleLight
+					),
+					new VerticalSpace(5.0),
+					hasHint ?
+						new Text(
+							"Swipe right to learn more",
+							style: Style.welcomeHint
+						) : null,
+				].where((i) => i != null).toList()
+			)
+		);
 	}
 
 	@override
@@ -53,68 +60,77 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 		return new StoreConnector<AppState, Store<AppState>>(
 			converter: (store) => store,
 			builder: (context, store) {
-				return new Container(
-					padding: const EdgeInsets.only(
-						left: 30.0, right: 30.0, bottom: 30.0
-					),
-					child: new Column(
-						crossAxisAlignment: CrossAxisAlignment.start,
+				return new DefaultTabController(
+					length: 3,
+					// Otherwise overscroll glow is clipped within TabBarView
+					child: new Stack(
 						children: [
-							new VerticalSpace(height / 12.0),
-							new Text(
-								"welcome to",
-								style: Style.welcomeStyleLight
+							new Container(
+								padding: new EdgeInsets.only(top: height / 14.0, left: 30.0),
+								child: new Text(
+									"chitchat",
+									style: Style.welcomeStyle
+								)
 							),
-							new Text(
-								"chitchat.",
-								style: Style.welcomeStyle
-							),
-							new Expanded(child: new Column()),
-							new Column(
-								crossAxisAlignment: CrossAxisAlignment.stretch,
+							new TabBarView(
 								children: [
-									new TextField(
-										controller: _emailController,
-										decoration: new InputDecoration(
-											labelText: "Email",
-											labelStyle: new TextStyle(
-												color: Style.textFaint
-											)
-										)
+									_buildText(
+										"Own your data.\nDon't be a product.",
+										context,
 									),
-									new VerticalSpace(5.0),
-									new TextField(
-										controller: _passwordController,
-										obscureText: true,
-										decoration: new InputDecoration(
-											labelText: "Password",
-											labelStyle: new TextStyle(
-												color: Style.textFaint
-											)
-										)
+									_buildText(
+										"We'll never sell your data.",
+										context,
 									),
-									new VerticalSpace(7.0),
-									this._hasError
-										? new Text(_errorText, style: Style.errorText)
-										: null,
-									new VerticalSpace(7.0),
-									new StrongButton(
-										onPressed: () => _attemptLogin(context, store),
-										text: "LOGIN"
+									_buildText(
+										"When you delete something, we forget it completely.",
+										context,
+										hasHint: false
 									),
-									new Container(
-										padding: const EdgeInsets.symmetric(vertical: 20.0),
-										child: new Column(
+								]
+							),
+							new Container(
+								padding: const EdgeInsets.only(
+									left: 30.0,
+									right: 30.0,
+									bottom: 30.0,
+								),
+								child: new Column(
+									crossAxisAlignment: CrossAxisAlignment.stretch,
+									children: [
+										// Push children to bottom of screen
+										new Expanded(child: new Column()),
+										new StrongButton(
+											onPressed: () => _attemptLogin(context, store),
+											text: "LOGIN"
+										),
+										new VerticalSpace(5.0),
+										new Column(
 											children: [
-												new Text("OR", style: new TextStyle(color: Style.textLight))
+												new Text(
+													"OR",
+													style: new TextStyle(color: Style.textLight)
+												)
+											]
+										),
+										new VerticalSpace(5.0),
+										new LightButton(
+											onPressed: () {},
+											text: "CREATE ACCOUNT"
+										),
+										new VerticalSpace(5.0),
+										new Row(
+											mainAxisAlignment: MainAxisAlignment.center,
+											children: [
+												new TabPageSelector(
+													indicatorSize: 10.0,
+													color: Colors.white,
+													selectedColor: Style.primary
+												)
 											]
 										)
-									),
-									new LightButton(
-										onPressed: () {},
-										text: "CREATE ACCOUNT"
-									),
-								].where((i) => i != null).toList()
+									]
+								)
 							)
 						]
 					)

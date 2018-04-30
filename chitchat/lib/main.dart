@@ -32,7 +32,7 @@ class App extends StatelessWidget {
 					hintColor: Style.textFaint,
 				),
 				home: new Scaffold(
-					body: new WelcomeScreen(),
+					body: new WelcomeScreen()
 				)
 			)
 		);

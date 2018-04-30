@@ -19,14 +19,22 @@ TextStyle header = new TextStyle(
 TextStyle welcomeStyleLight = new TextStyle(
 	fontFamily: "Roboto",
 	fontWeight: FontWeight.w300,
-	fontSize: 34.0,
-	color: textLight,
+	fontSize: 28.0,
+	height: 1.25,
+	color: const Color.fromRGBO(70, 70, 70, 1.0),
+);
+
+TextStyle welcomeHint = new TextStyle(
+	fontFamily: "Roboto",
+	fontWeight: FontWeight.w300,
+	fontSize: 26.0,
+	color: const Color.fromRGBO(70, 70, 70, 0.4),
 );
 
 TextStyle welcomeStyle = new TextStyle(
 	fontFamily: "Roboto",
 	fontWeight: FontWeight.w400,
-	fontSize: 34.0,
+	fontSize: 26.0,
 	color: primary,
 	height: 1.25,
 );
