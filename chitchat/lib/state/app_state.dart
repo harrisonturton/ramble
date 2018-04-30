@@ -6,7 +6,7 @@ class AppState {
 		this.user,
 		this.isLoggedIn,
 	});
-	final Map<String, ChatRoom> chatrooms;
+	final Map<String, Chatroom> chatrooms;
 	final bool isLoggedIn;
 	final User user;
 
@@ -17,7 +17,7 @@ class AppState {
 	);
 
 	AppState copyWith({
-		Map<String, ChatRoom> chatrooms,
+		Map<String, Chatroom> chatrooms,
 		bool isLoggedIn,
 		User user,
 	}) => new AppState(
@@ -27,12 +27,14 @@ class AppState {
 	);
 }
 
-class ChatRoom {
-	ChatRoom({
+class Chatroom {
+	Chatroom({
+		this.id,
 		this.title,
 		this.recentMessage,
 		this.timestamp
 	});
+	final String id;
 	final String title;
 	final String recentMessage;
 	final String timestamp;

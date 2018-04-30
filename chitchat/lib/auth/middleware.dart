@@ -23,10 +23,11 @@ void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next)
 
 	Firestore.instance.collection("uid_to_chats").document(action.user.uid).snapshots.listen((DocumentSnapshot snapshot) {
 		print("Snapshot: ${snapshot.data}");
-		Map<String, ChatRoom> newChatrooms = new Map();
+		Map<String, Chatroom> newChatrooms = new Map();
 		snapshot.data.keys.forEach((key) {
 			Map rawData = snapshot.data[key];
-			newChatrooms.putIfAbsent(key, () => new ChatRoom(
+			newChatrooms.putIfAbsent(key, () => new Chatroom(
+				id: key,
 				title: rawData["title"],
 				recentMessage: rawData["recent_message"],
 				timestamp: rawData["timestamp"],
@@ -43,7 +44,7 @@ void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next)
 			Map rawData = snapshot.data[key];
 			store.dispatch(new AddChatroom(
 				key: key,
-				chatroom: new ChatRoom(
+				chatroom: new Chatroom(
 					title: rawData["title"],
 					recentMessage: rawData["recent_message"],
 					timestamp: rawData["timestamp"],

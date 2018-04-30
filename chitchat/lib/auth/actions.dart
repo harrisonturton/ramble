@@ -15,5 +15,5 @@ class Login {
 
 class ReplaceChatrooms {
 	ReplaceChatrooms({this.chatrooms});
-	final Map<String, ChatRoom> chatrooms;
+	final Map<String, Chatroom> chatrooms;
 }

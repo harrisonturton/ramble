@@ -23,8 +23,9 @@ class _ChatScreenState extends State<ChatScreen> {
 			builder: (context, store) {
 				return new ListView(
 					children: store.state.chatrooms.keys.map((String key) {
-						ChatRoom room = store.state.chatrooms[key];
+						Chatroom room = store.state.chatrooms[key];
 						return new ChatListItem(
+							id: key,
 							title: room.title,
 							recentMessage: room.recentMessage,
 							timestamp: room.timestamp
