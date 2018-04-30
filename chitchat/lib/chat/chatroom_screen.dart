@@ -23,6 +23,13 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	void _sendMessage() {
 		print("Sending message ${_controller.text}");
 		// Need to restructure database -- put messages in a collection
+		Firestore.instance.collection("chatroom_id_to_messages/${widget.chatroom.id}/messages").add({
+			"author": "Harrison Turton",
+			"content": _controller.text,
+			"timestamp": DateTime.now().toUtc()
+		}).then((_) {
+			print("Added message ${_controller.text}");
+		});
 	}
 
 	@override
@@ -33,7 +40,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 
 	void _getMessages() async {
 		Firestore.instance.collection("chatroom_id_to_messages/${widget.chatroom.id}/messages")
-			.snapshots.listen((QuerySnapshot query) {
+			.orderBy("timestamp").snapshots.listen((QuerySnapshot query) {
 				print("Inside collection...");
 				setState(() {
 					isLoaded = true;
@@ -66,7 +73,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 										controller: _controller
 									)
 								),
-								new GestureDetector(
+								new InkWell(
 									onTap: _sendMessage,
 									child: new Icon(Icons.send)
 								)
