@@ -8,6 +8,17 @@ Color text = const Color.fromRGBO(100, 100, 100, 1.0);
 Color textLight = const Color.fromRGBO(142, 150, 164, 1.0);
 Color textFaint = const Color.fromRGBO(142, 150, 164, 0.8);
 Color searchBar = const Color.fromRGBO(244, 246, 249, 1.0);
+Color homeMessageBubble = primary;
+
+TextStyle homeMessageContent = new TextStyle(
+	color: Colors.white,
+	fontSize: 14.0,
+	height: 1.25
+);
+
+TextStyle awayMessageContent = new TextStyle(
+	color: text,
+);
 
 TextStyle header = new TextStyle(
 	fontWeight: FontWeight.w600,

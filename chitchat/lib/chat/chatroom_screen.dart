@@ -1,6 +1,7 @@
 import "dart:async";
 import "package:flutter/material.dart";
 import "package:chitchat/state/state.dart";
+import "package:chitchat/chat/chat.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 
 class ChatroomScreen extends StatefulWidget<_ChatroomScreenState> {
@@ -40,15 +41,32 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 			});
 	}
 
+	Widget _buildBody() {
+		return new Container(
+			padding: const EdgeInsets.all(15.0),
+			child: new Column(
+				children: [
+					new Expanded(
+						child: new ListView(
+							children: messages.map((message) =>
+								new MessageBubbleHome(
+									message: message
+								)).toList()
+						)
+					),
+					// Input here
+				]
+			)
+		);
+	}
+
 	@override
 	Widget build(BuildContext context) {
 		Widget body = new Center(
 			child: const Text("Loading...")
 		);
 		if (isLoaded) {
-			body = new Column(
-				children: messages.map((message) => new Text(message.content)).toList()
-			);
+			body = _buildBody();
 		}
 		return new Scaffold(
 			backgroundColor: Colors.white,
