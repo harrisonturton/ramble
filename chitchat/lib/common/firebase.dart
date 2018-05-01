@@ -66,3 +66,15 @@ Future<DocumentReference> sendMessageDev({
 		"timestamp": DateTime.now().toUtc()
 	});
 }
+
+Future<List<UserData>> getDataFromUids(List<String> uids) {
+	return Firestore.instance.collection("uid_to_user_data").getDocuments().then((QuerySnapshot query) {
+		return query.documents
+			.where((DocumentSnapshot doc) => uids.contains(doc.documentID))
+			.map((DocumentSnapshot doc) => new UserData(
+				firstName: doc.data["first_name"],
+				lastName: doc.data["last_name"],
+				username: doc.data["username"],
+			)).toList();
+	});
+}

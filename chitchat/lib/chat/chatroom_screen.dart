@@ -28,9 +28,6 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	void initState() {
 		print("Initiating chatroom state...");
 		_getMessages();
-		_scrollController.addListener(() {
-			print(_scrollController.offset);
-		});
 	}
 
 	void _getMessages() {
@@ -51,7 +48,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 		).then((_) {
 			_controller.clear();
 			_scrollController.animateTo(
-				_scrollController.position.maxScrollExtent + 100.0,
+				0.0,
 				curve: Curves.easeOut,
 				duration: const Duration(milliseconds: 300)
 			);
@@ -81,19 +78,20 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 				children: [
 					new CustomScrollView(
 						controller: _scrollController,
+						reverse: true,
 						slivers: [
 							new SliverAppBar(
-								floating: true,
+								pinned: true,
 								elevation: 0.0,
 								backgroundColor: const Color.fromRGBO(250, 250, 250, 1.0),
 								title: new Text(widget.chatroom.title),
 							),
 							new SliverList(
 								delegate: new SliverChildListDelegate(
-									listItems
+									listItems.reversed.toList()
 								)
 							)
-						]
+						].reversed.toList()
 					),
 					new Column(
 						children: [
