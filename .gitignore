@@ -9,5 +9,5 @@ build/
 ios/.generated/
 packages
 .flutter-plugins
-design/
+design/ignore/
 google-services.json
