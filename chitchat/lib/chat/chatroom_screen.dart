@@ -19,6 +19,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	bool isLoaded = false;
 	List<Message> messages = null;
 
+	ScrollController _scrollController = new ScrollController();
 	TextEditingController _controller = new TextEditingController();
 
 	void _sendMessage() {
@@ -35,6 +36,11 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 			print("Added message ${_controller.text}");
 		});
 		_controller.clear();
+		_scrollController.animateTo(
+			0.0,
+			curve: Curves.easeOut,
+			duration: const Duration(milliseconds: 300),
+		);
 	}
 
 	@override
@@ -58,17 +64,19 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	}
 
 	Widget _buildBody() {
+		List<Widget> messageWidgets = new List();
+		messages.forEach((message) => messageWidgets.add(new MessageBubbleHome(
+			message: message
+		)));
+		messageWidgets.add(new VerticalSpace(35.0));
 		return new Container(
 			color: const Color.fromRGBO(250, 250, 250, 1.0),
-			//padding: const EdgeInsets.all(15.0),
 			child: new Stack(
 				children: [
 					new ListView(
-						children: messages.map((message) {
-							return new MessageBubbleHome(
-								message: message
-							);
-						}).toList(),
+						reverse: true,
+						controller: _scrollController,
+						children: messageWidgets.reversed.toList()
 					),
 					new Column(
 						children: [
