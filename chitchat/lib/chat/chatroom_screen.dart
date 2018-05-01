@@ -60,23 +60,53 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	Widget _buildBody() {
 		return new Container(
 			color: const Color.fromRGBO(250, 250, 250, 1.0),
-			padding: const EdgeInsets.all(15.0),
-			child: new Column(
+			//padding: const EdgeInsets.all(15.0),
+			child: new Stack(
 				children: [
-					new Expanded(
-						child: new ListView(
-							children: messages.map((message) =>
-								new MessageBubbleHome(
-									message: message
-								)).toList()
-						)
+					new ListView(
+						children: messages.map((message) {
+							return new MessageBubbleHome(
+								message: message
+							);
+						}).toList(),
 					),
-					new StadiumInput(
-						controller: _controller,
-						onTap: _sendMessage
+					new Column(
+						children: [
+							new Expanded(child: new Column()),
+							new Padding(
+								padding: const EdgeInsets.all(15.0),
+								child: new StadiumInput(
+									controller: _controller,
+									onTap: _sendMessage
+								)
+							)
+						]
 					)
 				]
 			)
+		);
+		return new Stack(
+			children: [
+				new Expanded(
+					child: new ListView(
+						children: messages.map((message) {
+							return new MessageBubbleHome(
+								message: message
+							);
+						}).toList()
+					)
+				),
+				new Column(
+					children: [
+						// Push to bottom of screen
+						new Expanded(child: new Column()),
+						new StadiumInput(
+							controller: _controller,
+							onTap: _sendMessage
+						)
+					]
+				)
+			]
 		);
 	}
 

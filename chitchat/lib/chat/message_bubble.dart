@@ -18,11 +18,14 @@ class MessageBubble extends StatelessWidget {
 		return new Align(
 			alignment: alignment,
 			child: new Container(
+				margin: const EdgeInsets.symmetric(
+					horizontal: 15.0,
+					vertical: 2.5
+				),
 				padding: const EdgeInsets.symmetric(
 					horizontal: 15.0,
 					vertical: 12.0,
 				),
-				margin: const EdgeInsets.symmetric(vertical: 2.5),
 				child: new Text(
 					message.content,
 					style: contentStyle
