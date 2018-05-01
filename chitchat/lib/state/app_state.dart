@@ -1,4 +1,4 @@
-import "package:firebase_auth/firebase_auth.dart";
+import "model.dart";
 
 class AppState {
 	AppState({
@@ -24,44 +24,5 @@ class AppState {
 		chatrooms: chatrooms ?? this.chatrooms,
 		user: user ?? this.user,
 		isLoggedIn: isLoggedIn ?? this.isLoggedIn
-	);
-}
-
-class Chatroom {
-	Chatroom({
-		this.id,
-		this.title,
-		this.recentMessage,
-		this.timestamp
-	});
-	final String id;
-	final String title;
-	final String recentMessage;
-	final String timestamp;
-}
-
-class Message {
-	Message({
-		this.author,
-		this.content
-	});
-	final String author;
-	final String content;
-}
-
-class User {
-	User({
-		this.firebaseUser,
-		this.username
-	});
-	final FirebaseUser firebaseUser;
-	final String username;
-
-	User copyWith({
-		FirebaseUser firebaseUser,
-		String username
-	}) => new User(
-		firebaseUser: firebaseUser ?? this.firebaseUser,
-		username: username ?? this.username
 	);
 }

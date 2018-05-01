@@ -32,19 +32,19 @@ Stream<List<Message>> streamMessages(String chatroomId) {
 }
 
 Stream<List<Chatroom>> streamChatrooms(String uid) {
-	final String path = "uid_to_chats/${uid}";
-	return Firestore.instance.collection("uid_to_chats").document(uid).snapshots.map((DocumentSnapshot snapshot) {
-		return snapshot.data.keys.map((String key) {
-			Map data = snapshot.data[key];
-			print(data);
-			return new Chatroom(
-				id: key,
-				title: data["title"],
-				recentMessage: data["recent_message"],
-				timestamp: data["timestamp"],
-			);
-		}).toList();
-	});
+	final String path = "uid_to_chatrooms/${uid}/chatrooms";
+	return Firestore.instance.collection(path)
+		.orderBy("timestamp")
+		.snapshots.map((QuerySnapshot query) {
+			return query.documents.map((DocumentSnapshot snapshot) {
+				return new Chatroom(
+					id: snapshot.documentID,
+					title: snapshot.data["title"],
+					recentMessage: snapshot.data["recent_message"],
+					timestamp: snapshot.data["timestamp"].hour.toString(),
+				);
+			}).toList();
+		});
 }
 
 Future<DocumentReference> sendMessage(User author, String chatroomId, String message) {
