@@ -3,19 +3,12 @@
 ChitChat is a social network that respects user privacy. We are fully transparent — anyone is welcome to browse our code and verify our claims.
 
 ### Aims & Mission
-
 - Never use private data (e.g. instant message data) for targeting advertising
-
 - Encrypt private data wherever possible
-
 - Never share data with third-parties (without explicit consent)
-
 - Completely forget deleted data
 
-  ​
-
 ## Getting Started
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
@@ -28,21 +21,16 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 **Setting up the local project**
-
 Clone the repository
-
 ```
 git clone https://github.com/harrisonturton/chitchat
 ```
-
 Install the dependencies
-
 ```
 cd chitchat && flutter packages get
 ```
 
 **Configuring Firebase**
-
 1. Enable Email authentication
 2. Enable Firestore
 3. Configure the schema in Firestore
@@ -51,8 +39,7 @@ cd chitchat && flutter packages get
 7. Add the following:
 
 *Inside `android/build.grade`:*
-
-```json
+```
 repositories {
 	// ... Other stuff
     maven {
@@ -61,16 +48,13 @@ repositories {
 }
 ```
 
-​	*Inside `android/app/build.grade`, at the very bottom:*
-
-```json
+*Inside `android/app/build.grade`, at the very bottom:*
+```
 apply plugin: 'com.google.gms.google-services'
 ```
 
 **Running Locally**
-
 Simply connect your device, and execute:
-
 ```
 $ flutter run
 ```
@@ -78,7 +62,7 @@ $ flutter run
 ## Deployment
 
 **Android**
-```bash
+```
 $ flutter build apk --release
 $ flutter install
 ```
@@ -91,9 +75,7 @@ Pull Requests welcome! For large changes, please open an issue so we can discuss
 - Flutter, Dart & Firebase
 
 ## Authors
-
 - [Harrison Turton](https://github.com/harrisonturton)
 
 ## License
-
 Haven't decided upon a license yet. Please contact me for further details.
