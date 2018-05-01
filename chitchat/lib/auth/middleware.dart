@@ -16,7 +16,7 @@ void LoginMiddleware(Store<AppState> store, dynamic action, NextDispatcher next)
 
 	print("Inside login middleware");
 	String username =
-		await Firestore.instance.collection("uid_to_username")
+		await Firestore.instance.collection("uid_to_user_data")
 		.document(action.user.uid).get()
 		.then((DocumentSnapshot snapshot) => snapshot.data["username"]);
 	next(new Login(
