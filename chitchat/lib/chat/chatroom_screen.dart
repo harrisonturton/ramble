@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import "package:chitchat/state/state.dart";
 import "package:chitchat/common/style.dart" as Style;
 import "package:chitchat/common/common.dart";
+import "package:chitchat/common/firebase.dart" as Firebase;
 import "package:chitchat/chat/chat.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 
@@ -22,26 +23,6 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	ScrollController _scrollController = new ScrollController();
 	TextEditingController _controller = new TextEditingController();
 
-	void _sendMessage() {
-		print("Sending message ${_controller.text}");
-		if (_controller.text == "") {
-			return;
-		}
-		// Need to restructure database -- put messages in a collection
-		Firestore.instance.collection("chatroom_id_to_messages/${widget.chatroom.id}/messages").add({
-			"author": "Harrison Turton",
-			"content": _controller.text,
-			"timestamp": DateTime.now().toUtc()
-		}).then((_) {
-			print("Added message ${_controller.text}");
-		});
-		_controller.clear();
-		_scrollController.animateTo(
-			0.0,
-			curve: Curves.easeOut,
-			duration: const Duration(milliseconds: 300),
-		);
-	}
 
 	@override
 	void initState() {
@@ -49,18 +30,29 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 		_getMessages();
 	}
 
-	void _getMessages() async {
-		Firestore.instance.collection("chatroom_id_to_messages/${widget.chatroom.id}/messages")
-			.orderBy("timestamp").snapshots.listen((QuerySnapshot query) {
-				print("Inside collection...");
-				setState(() {
-					isLoaded = true;
-					this.messages = query.documents.map((DocumentSnapshot snapshot) => new Message(
-						author: snapshot.data["author"],
-						content: snapshot.data["content"],
-					)).toList();
-				});
+	void _getMessages() {
+		Firebase.streamMessages(widget.chatroom.id).listen((List<Message> messages) {
+			setState(() {
+				this.isLoaded = true;
+				this.messages = messages;
 			});
+		});
+	}
+
+	void _sendMessage() {
+		if (_controller.text == "") return;
+		Firebase.sendMessageDev(
+			name: "Harrison Turton",
+			chatroomId: widget.chatroom.id,
+			content: _controller.text
+		).then((_) {
+			_controller.clear();
+			_scrollController.animateTo(
+				0.0,
+				curve: Curves.easeOut,
+				duration: const Duration(milliseconds: 300)
+			);
+		});
 	}
 
 	Widget _buildBody() {

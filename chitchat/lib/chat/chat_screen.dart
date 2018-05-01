@@ -3,6 +3,7 @@ import "dart:ui";
 import "package:chitchat/common/style.dart" as Style;
 import "package:flutter/material.dart";
 import "package:chitchat/common/common.dart";
+import "package:chitchat/common/firebase.dart" as Firebase;
 import "package:chitchat/chat/chat.dart";
 import "package:chitchat/state/state.dart";
 
@@ -29,23 +30,12 @@ class _ChatScreenState extends State<ChatScreen> {
 	}
 
 	void _getChatrooms() async {
-		Firestore.instance.collection("uid_to_chats")
-			.document(widget.firebaseUser.uid).snapshots.listen((DocumentSnapshot snapshot) {
-				List<Chatroom> newChatrooms = new List();
-				snapshot.data.keys.forEach((key) {
-					Map rawData = snapshot.data[key];
-					newChatrooms.add(new Chatroom(
-						id: key,
-						title: rawData["title"],
-						recentMessage: rawData["recent_message"],
-						timestamp: rawData["timestamp"],
-					));
-				});
-				setState(() {
-					chatrooms = newChatrooms;
-					isLoaded = true;
-				});
+		Firebase.streamChatrooms(widget.firebaseUser.uid).listen((List<Chatroom> chatrooms) {
+			setState(() {
+				this.isLoaded = true;
+				this.chatrooms = chatrooms;
 			});
+		});
 	}
 
 	Widget build(BuildContext context) {
