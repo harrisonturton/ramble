@@ -56,7 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
 	// list is replaces by the search results.
 	void _toggleSearch() {
 		this.isSearch = !this.isSearch;
-		Firebase.getDataFromUids([ "nLjqn36sbddbIFC3S8u4kyLGCPy2" ]).then((data) {
+		Firebase.getDataFromUids([ "nLjqn36sbddbIFC3S8u4kyLGCPy2", "0hKPEVkI3DVXvLKHtEFngWdGxIY2" ]).then((data) {
 			setState(() {
 				this.isSearchLoaded = true;
 				this.searchResults = data;
@@ -108,9 +108,9 @@ class _ChatScreenState extends State<ChatScreen> {
 	// Build the list that is shown during the search state.
 	Widget _buildSearchList() => new SliverList(
 		delegate: new SliverChildListDelegate(
-			searchResults.map((UserData data) => new Padding(
-				padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 5.0),
-				child: new Text("${data.firstName} ${data.lastName}")
+			searchResults.map((UserData data) => new FriendListItem(
+				name: "${data.firstName} ${data.lastName}",
+				username: data.username
 			)).toList()
 		)
 	);
