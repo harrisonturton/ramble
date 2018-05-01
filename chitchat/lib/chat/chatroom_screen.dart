@@ -28,6 +28,9 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 	void initState() {
 		print("Initiating chatroom state...");
 		_getMessages();
+		_scrollController.addListener(() {
+			print(_scrollController.offset);
+		});
 	}
 
 	void _getMessages() {
@@ -48,33 +51,59 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 		).then((_) {
 			_controller.clear();
 			_scrollController.animateTo(
-				0.0,
+				_scrollController.position.maxScrollExtent + 100.0,
 				curve: Curves.easeOut,
 				duration: const Duration(milliseconds: 300)
 			);
 		});
 	}
 
-	Widget _buildBody() {
-		List<Widget> messageWidgets = new List();
-		messages.forEach((message) => messageWidgets.add(new MessageBubbleHome(
+	@override
+	Widget build(BuildContext context) {
+		if (!isLoaded) {
+			return new Center(
+				child: new CircularProgressIndicator(
+					value: null,
+					valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
+					strokeWidth: 2.5
+				)
+			);
+		}
+
+		List<Widget> listItems = new List();
+		messages.forEach((Message message) => listItems.add(new MessageBubbleHome(
 			message: message
 		)));
-		messageWidgets.add(new VerticalSpace(35.0));
-		return new Container(
-			color: const Color.fromRGBO(250, 250, 250, 1.0),
-			child: new Stack(
+		listItems.add(new VerticalSpace(35.0));
+
+		return new Scaffold(
+			body: new Stack(
 				children: [
-					new ListView(
-						reverse: true,
+					new CustomScrollView(
 						controller: _scrollController,
-						children: messageWidgets.reversed.toList()
+						slivers: [
+							new SliverAppBar(
+								floating: true,
+								elevation: 0.0,
+								backgroundColor: const Color.fromRGBO(250, 250, 250, 1.0),
+								title: new Text(widget.chatroom.title),
+							),
+							new SliverList(
+								delegate: new SliverChildListDelegate(
+									listItems
+								)
+							)
+						]
 					),
 					new Column(
 						children: [
+							// Push to bottom of screen
 							new Expanded(child: new Column()),
 							new Padding(
-								padding: const EdgeInsets.all(15.0),
+								padding: const EdgeInsets.only(
+									left: 15.0, right: 15.0,
+									bottom: 15.0
+								),
 								child: new StadiumInput(
 									controller: _controller,
 									onTap: _sendMessage
@@ -84,54 +113,6 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
 					)
 				]
 			)
-		);
-		return new Stack(
-			children: [
-				new Expanded(
-					child: new ListView(
-						children: messages.map((message) {
-							return new MessageBubbleHome(
-								message: message
-							);
-						}).toList()
-					)
-				),
-				new Column(
-					children: [
-						// Push to bottom of screen
-						new Expanded(child: new Column()),
-						new StadiumInput(
-							controller: _controller,
-							onTap: _sendMessage
-						)
-					]
-				)
-			]
-		);
-	}
-
-	@override
-	Widget build(BuildContext context) {
-		Widget body = new Center(
-			child: new CircularProgressIndicator(
-				value: null,
-				valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
-				strokeWidth: 2.5
-			)
-		);
-		if (isLoaded) {
-			body = _buildBody();
-		}
-		return new Scaffold(
-			backgroundColor: Colors.white,
-			appBar: new AppBar(
-				title: new Text(
-					widget.chatroom.title,
-				),
-				backgroundColor: const Color.fromRGBO(250, 250, 250, 1.0),
-				elevation: 0.0
-			),
-			body: body
 		);
 	}
 }

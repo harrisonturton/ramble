@@ -77,7 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
 					delegate: new SliverChildListDelegate(
 						chatrooms.map((Chatroom chatroom) => new ChatListItem(
 							chatroom: chatroom
-						)).toList();
+						)).toList()
 					)
 				)
 			]
