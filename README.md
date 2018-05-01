@@ -1,22 +1,99 @@
-# chitchat
-This is an effort to build a fully transparent social media that respects user data.
+![Alt text](design/github_logo.png?raw=true "Title")
 
-### Core Beliefs
-- Never sell user data.
-- Completely forget deleted data.
-- Full transparency on what data is kept.
-- Ignore all private information (and encrypt where possible).
-- Never give data to third-parties (without explicit consent)
+ChitChat is a social network that respects user privacy. We are fully transparent — anyone is welcome to browse our code and verify our claims.
 
-Examine these beliefs in [more detail here.](core-beliefs.md)
+### Aims & Mission
+
+- Never use private data (e.g. instant message data) for targeting advertising
+
+- Encrypt private data wherever possible
+
+- Never share data with third-parties (without explicit consent)
+
+- Completely forget deleted data
+
+  ​
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+- [Flutter](https://flutter.io/)
+- [Dart (comes with Flutter)](https://www.dartlang.org/)
+- [Firebase Account](https://firebase.google.com/)
+- Working Android or iOS device
+
+### Installing
+
+**Setting up the local project**
+
+Clone the repository
+
+```
+git clone https://github.com/harrisonturton/chitchat
+```
+
+Install the dependencies
+
+```
+cd chitchat && flutter packages get
+```
+
+**Configuring Firebase**
+
+1. Enable Email authentication
+2. Enable Firestore
+3. Configure the schema in Firestore
+4. Add Android/iOS App
+5. Save `google-services.json` to `android/app`
+7. Add the following:
+
+*Inside `android/build.grade`:*
+
+```json
+repositories {
+	// ... Other stuff
+    maven {
+        url "https://maven.google.com" // Google's Maven repository
+    }   
+}
+```
+
+​	*Inside `android/app/build.grade`, at the very bottom:*
+
+```json
+apply plugin: 'com.google.gms.google-services'
+```
+
+**Running Locally**
+
+Simply connect your device, and execute:
+
+```
+$ flutter run
+```
+
+## Deployment
+
+**Android**
+```bash
+$ flutter build apk --release
+$ flutter install
+```
+**Note:** If you cannot see your changes, run `flutter clean` before building & installing again.
 
 ## Contributing
-Pull requests are welcome! Please open an issue for anything bigger than a bugfix.
+Pull Requests welcome! For large changes, please open an issue so we can discuss the solution.
 
-To initialize a new project:
-```
-$ git clone <YOUR FORK>
-$ cd chitchat
-$ flutter packages get
-$ git checkout -b "branch_name"
-```
+## Built With
+- Flutter, Dart & Firebase
+
+## Authors
+
+- [Harrison Turton](https://github.com/harrisonturton)
+
+## License
+
+Haven't decided upon a license yet. Please contact me for further details.
