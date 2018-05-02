@@ -40,6 +40,12 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 		});
 	}
 
+	void _openNewFriendScreen(BuildContext context) {
+		Navigator.of(context).push(new MaterialPageRoute(
+			builder: (_) => new NewFriendScreen()
+		));
+	}
+
 	List<Widget> _buildActions() {
 		EdgeInsets padding = const EdgeInsets.only(top: 15.0, right: 15.0);
 
@@ -49,12 +55,15 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
 		if (_controller.index == 1) {
 			return [
-				new Padding(
-					padding: padding,
-					child: new Image.asset(
-						create,
-						width: 35.0,
-						color: Style.primary
+				new GestureDetector(
+					onTap: () => print("Create new chatroom"),
+					child: new Padding(
+						padding: padding,
+						child: new Image.asset(
+							create,
+							width: 35.0,
+							color: Style.primary
+						)
 					)
 				)
 			];
@@ -62,12 +71,15 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
 		if (_controller.index == 2) {
 			return [
-				new Padding(
-					padding: padding,
-					child: new Icon(
-						Icons.add,
-						color: Style.primary,
-						size: 30.0
+				new GestureDetector(
+					onTap: () => _openNewFriendScreen(context),
+					child: new Padding(
+						padding: padding,
+						child: new Icon(
+							Icons.add,
+							color: Style.primary,
+							size: 30.0
+						)
 					)
 				)
 			];
