@@ -1,24 +1,20 @@
-import "dart:math";
-import "dart:ui";
-import "package:chitchat/common/style.dart" as Style;
 import "package:flutter/material.dart";
-import "package:chitchat/common/common.dart";
-import "package:chitchat/common/firebase.dart" as Firebase;
-import "package:chitchat/chat/chat.dart";
 import "package:chitchat/state/state.dart";
-
+import "package:chitchat/common/common.dart";
+import "package:chitchat/common/style.dart" as Style;
+import "package:chitchat/common/firebase.dart" as Firebase;
 import "package:firebase_auth/firebase_auth.dart";
-import "package:cloud_firestore/cloud_firestore.dart";
+import "friend_list_item.dart";
 
-class ChatScreen extends StatefulWidget<_ChatScreenState> {
-	ChatScreen(this.firebaseUser);
+class FriendsScreen extends StatefulWidget<_FriendsScreenState> {
+	FriendsScreen(this.firebaseUser);
 	final FirebaseUser firebaseUser;
 
 	@override
-	_ChatScreenState createState() => new _ChatScreenState();
+	_FriendsScreenState createState() => new _FriendsScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _FriendsScreenState extends State<FriendsScreen> {
 
 	List<Chatroom> chatrooms = null;
 	bool isLoaded = false;
@@ -50,9 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
 		}
 
 		return new ListView(
-			children: chatrooms.map((Chatroom chatroom) => new ChatListItem(
-				chatroom: chatroom
-			)).toList()
+			children: chatrooms.map((Chatroom chatroom) => new FriendListItem()).toList()
 		);
 	}
 }
