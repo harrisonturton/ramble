@@ -25,11 +25,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
 	@override
 	void initState() {
-		print("initializing chat screen state...");
-		_getChatrooms();
+		_fetchChatrooms();
 	}
 
-	void _getChatrooms() async {
+	void _fetchChatrooms() async {
 		Firebase.streamChatrooms(widget.firebaseUser.uid).listen((List<Chatroom> chatrooms) {
 			setState(() {
 				this.isLoaded = true;
@@ -38,66 +37,75 @@ class _ChatScreenState extends State<ChatScreen> {
 		});
 	}
 
+	Widget _buildChatroomList() => new SliverList(
+		delegate: new SliverChildListDelegate(
+			chatrooms.map((Chatroom chatroom) => new ChatListItem(
+				chatroom: chatroom
+			)).toList()
+		)
+	);
+
+	Widget _buildHeader() => new SliverAppBar(
+		floating: true,
+		elevation: 0.0,
+		backgroundColor: Colors.white,
+		title: new Padding(
+			padding: const EdgeInsets.only(left: 10.0, top: 20.0),
+			child: new Text(
+				"Messages",
+				style: new TextStyle(
+					fontSize: 24.0,
+					fontWeight: FontWeight.w600
+				)
+			),
+		),
+		actions: [
+			new GestureDetector(
+				onTap: () => print("Create new chat..."),
+				child: new Padding(
+					padding: const EdgeInsets.only(top: 15.0, right: 15.0),
+					child: new Image.asset(
+						create,
+						width: 35.0,
+						color: Style.primary
+					)
+				)
+			)
+		]
+	);
+
+	Widget _buildLoadingScreen() => new CustomScrollView(
+		slivers: [
+			_buildHeader(),
+			new SliverList(
+				delegate: new SliverChildListDelegate([
+					new Padding(
+						padding: const EdgeInsets.only(top: 30.0),
+						child: new Column(
+							children: [
+								new CircularProgressIndicator(
+									value: null,
+									valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
+									strokeWidth: 2.5
+								)
+							]
+						)
+					)
+				])
+			)
+		]
+	);
+
 	Widget build(BuildContext context) {
 		if (!isLoaded) {
-			return new Center(
-				child: new CircularProgressIndicator(
-					value: null,
-					valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
-					strokeWidth: 2.5
-				)
-			);
+			return _buildLoadingScreen();
 		}
 
 		return new CustomScrollView(
 			slivers: [
-				new SliverAppBar(
-					floating: true,
-					elevation: 0.0,
-					backgroundColor: Colors.white,
-					title: new Padding(
-						padding: const EdgeInsets.only(left: 10.0, top: 20.0),
-						child: new Text(
-							"Messages",
-							style: new TextStyle(
-								fontSize: 24.0,
-								fontWeight: FontWeight.w600
-							)
-						),
-					),
-					bottom: new PreferredSize(
-						preferredSize: new Size.fromHeight(50.0),
-						child: new Padding(
-							padding: const EdgeInsets.symmetric(horizontal: 25.0),
-							child: new SearchBar()
-						)
-					)
-				),
-				new SliverList(
-					delegate: new SliverChildListDelegate(
-						chatrooms.map((Chatroom chatroom) => new ChatListItem(
-							chatroom: chatroom
-						)).toList()
-					)
-				)
+				_buildHeader(),
+				_buildChatroomList()
 			]
 		);
-
-		if (isLoaded && chatrooms != null) {
-			return new ListView(
-				children: chatrooms
-					.map((Chatroom chatroom) => new ChatListItem(
-						chatroom: chatroom
-					)).toList()
-			);
-		} else {
-			return new Center(
-				child: new CircularProgressIndicator(
-					value: null,
-					valueColor: new AlwaysStoppedAnimation<Color>(Style.primary),
-					strokeWidth: 2.5
-				)
-			);
-		}
 	}
 }

@@ -66,3 +66,17 @@ Future<DocumentReference> sendMessageDev({
 		"timestamp": DateTime.now().toUtc()
 	});
 }
+
+Future<List<UserData>> matchUserData(String usernameSearch) {
+	return Firestore.instance.collection("username_to_user_data").getDocuments()
+		.then((QuerySnapshot query) => query.documents)
+		.then((List<DocumentSnapshot> docs) =>
+			docs
+				.where((DocumentSnapshot doc) => doc.data["username"].startsWith(usernameSearch))
+				.map((DocumentSnapshot doc) => new UserData(
+					username: doc.data["username"],
+					firstName: doc.data["first_name"],
+					lastName: doc.data["last_name"]
+				)).toList()
+		);
+}

@@ -2,6 +2,13 @@ import "package:chitchat/common/style.dart" as Style;
 import "package:flutter/material.dart";
 
 class SearchBar extends StatelessWidget {
+	SearchBar({ 
+		this.enabled=true,
+		this.controller
+	});
+	final bool enabled;
+	final TextEditingController controller;
+
 	@override
 	Widget build(BuildContext context) {
 		return new Container(
@@ -10,6 +17,8 @@ class SearchBar extends StatelessWidget {
 				horizontal: 5.0
 			),
 			child: new TextField(
+				enabled: enabled,
+				controller: controller,
 				decoration: new InputDecoration(
 					hintText: "Search",
 					border: InputBorder.none,
