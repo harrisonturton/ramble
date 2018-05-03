@@ -44,6 +44,8 @@ class _BottomNavigationState extends State<BottomNavigation> with TickerProvider
 			(int i) => new Expanded(
 				child: new FlatButton(
 					onPressed: () => _changePage(i),
+					highlightColor: Colors.white,
+					splashColor: Colors.white,
 					child: new Image.asset(
 						i == _currentIndex ? widget.items[i][0] : widget.items[i][1],
 						width: 35.0,

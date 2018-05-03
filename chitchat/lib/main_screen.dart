@@ -18,6 +18,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 	@override
 	Widget build(BuildContext context) {
 		return new BottomNavigation(
+			fadeDuration: new Duration(milliseconds: 100),
 			children: [
 				new Text("Newsfeed"),
 				new ChatScreen(widget.store.state.user.firebaseUser),
