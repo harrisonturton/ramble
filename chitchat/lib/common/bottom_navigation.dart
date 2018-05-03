@@ -38,26 +38,33 @@ class _BottomNavigationState extends State<BottomNavigation> with TickerProvider
 		)
 	);
 
-	Widget _buildButtonBar() => new ButtonBar(
-		alignment: MainAxisAlignment.center,
+	Widget _buildButtonBar() => new Row(
 		children: List.generate(
 			widget.items.length,
-			(int i) => new FlatButton(
-				onPressed: () => _changePage(i),
-				child: new Image.asset(
-					i == _currentIndex ? widget.items[i][0] : widget.items[i][1],
-					width: 35.0,
-					color: _currentIndex == i ? Style.primary : Style.textLight,
+			(int i) => new Expanded(
+				child: new FlatButton(
+					onPressed: () => _changePage(i),
+					child: new Image.asset(
+						i == _currentIndex ? widget.items[i][0] : widget.items[i][1],
+						width: 35.0,
+						color: _currentIndex == i ? Style.primary : Style.textLight,
+					)
 				)
 			)
 		)
 	);
 
 	Widget build(BuildContext context) {
+		double width = MediaQuery.of(context).size.width;
 		return new Scaffold(
 			backgroundColor: Colors.white,
 			body: _buildBody(),
-			bottomNavigationBar: _buildButtonBar(),
+			bottomNavigationBar: new Padding(
+				padding: const EdgeInsets.symmetric(
+					vertical: 15.0
+				),
+				child: _buildButtonBar()	
+			)
 		);
 	}
 }
