@@ -67,16 +67,28 @@ Future<DocumentReference> sendMessageDev({
 	});
 }
 
-Future<List<UserData>> matchUserData(String usernameSearch) {
-	return Firestore.instance.collection("username_to_user_data").getDocuments()
-		.then((QuerySnapshot query) => query.documents)
-		.then((List<DocumentSnapshot> docs) =>
-			docs
-				.where((DocumentSnapshot doc) => doc.data["username"].startsWith(usernameSearch))
-				.map((DocumentSnapshot doc) => new UserData(
-					username: doc.data["username"],
-					firstName: doc.data["first_name"],
-					lastName: doc.data["last_name"]
-				)).toList()
-		);
+Future<List<UserData>> getSimilarUsers(String username) {
+	String searchInput = username.toLowerCase();
+	return Firestore.instance.collection("username_to_user_data")
+		.getDocuments().then((QuerySnapshot query) => query.documents)
+		.then((List<DocumentSnapshot> snapshots) {
+			return snapshots
+				.where((DocumentSnapshot snapshot) => snapshot.data["username"].startsWith(searchInput))
+				.map((DocumentSnapshot snapshot) => new UserData(
+					username: snapshot.data["username"],
+					firstName: snapshot.data["first_name"],
+					lastName: snapshot.data["last_name"],
+				)).toList();
+		});
+}
+
+Future<List<UserData>> getFriends(String uid) {
+	return Firestore.instance.document("uid_to_friends/$uid").get().then((DocumentSnapshot doc) {
+		List<UserData> result = new List();
+		doc.data["friends"].forEach((String friendUid) {
+			Firestore.instance.document("uid_to_user_data/$friendUid").get().then((DocumentSnapshot doc) {
+
+			});
+		});
+	});
 }

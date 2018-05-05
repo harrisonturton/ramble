@@ -3,6 +3,7 @@ import "package:chitchat/chat/chat.dart";
 import "package:chitchat/common/style.dart" as Style;
 import "package:chitchat/common/common.dart";
 import "package:chitchat/state/state.dart";
+import "package:chitchat/friends/friends.dart";
 import "package:redux/redux.dart";
 
 class MainScreen extends StatefulWidget<_MainScreenState> {
@@ -22,7 +23,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 			children: [
 				new Text("Newsfeed"),
 				new ChatScreen(widget.store.state.user.firebaseUser),
-				new Text("Notifications")
+				new FriendsScreen(widget.store.state.user.firebaseUser),
 			],
 			items: [
 				[home_solid, home_outline],
