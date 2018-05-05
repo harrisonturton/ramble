@@ -7,7 +7,7 @@ class OnboardingScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<View>
+				<View style={styles.textContainer}>
 					<Text style={styles.logo}>chitchat</Text>
 					<Text style={styles.header}>Own your data</Text>
 					<Text style={styles.header}>Don't be a product.</Text>
@@ -62,10 +62,16 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		marginBottom: 30,
 	},
+	textContainer: {
+		marginTop: 50,
+	},
 	header: {
-
+		fontSize: 26,
+		color: 'rgb(70,70,70)'
 	},
 	logo: {
+		fontSize: 28,
+		marginBottom: 20,
 		color: '#09D3CC'
 	}
 });
