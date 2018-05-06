@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import { Button, OutlineButton } from 'app/common/button';
+import { StackNavigator, SwitchNavigator } from 'react-navigation';
+import { Button, OutlineButton } from 'src/common/button';
+import { Auth } from 'aws-amplify';
 
 class OnboardingScreen extends Component {
+	async attemptLogin () {
+		// Both alternatives work.
+		try {
+			await Auth.signIn('admin@example.com', 'Test12345');
+			console.log('Signed in! 12345');
+			this.props.navigation.navigate('App');
+		} catch (err) {
+			console.log(err);
+		}
+	}
 	render() {
 		return (
 			<View style={styles.container}>
@@ -15,7 +26,7 @@ class OnboardingScreen extends Component {
 				<View style={styles.buttonContainer}>
 					<Button
 						text='LOGIN'
-						onPress={() => this.props.navigation.navigate('Login')}
+						onPress={() => this.attemptLogin()}
 					/>
 					<OutlineButton
 						text='REGISTER'
@@ -30,27 +41,6 @@ class OnboardingScreen extends Component {
 OnboardingScreen.navigationOptions = ({ navigation: { state: { params = {} } } }) => ({
 	header: null
 });
-
-class LoginScreen extends Component {
-	render() {
-		return (
-			<View>
-				<Text>Login</Text>
-			</View>
-		);
-	}
-}
-
-
-class RegisterScreen extends Component {
-	render() {
-		return (
-			<View>
-				<Text>Register</Text>
-			</View>
-		);
-	}
-}
 
 const styles = StyleSheet.create({
 	container: {
@@ -80,12 +70,6 @@ export default WelcomeScreen = StackNavigator({
 	Welcome: {
 		screen: OnboardingScreen
 	},
-	Login: {
-		screen: LoginScreen
-	},
-	Register: {
-		screen: RegisterScreen
-	}
 }, {
 	initialRouteName: 'Welcome',
 });

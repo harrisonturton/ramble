@@ -1,0 +1,65 @@
+# NOTE: update this with your service name
+service: chitchat-api
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+
+  iamRoleStatement:
+    - Effect: Allow
+      Action:
+        - dyanmodb:DescribeTable
+        - dyanmodb:Query
+        - dyanmodb:Scan
+        - dyanmodb:GetItem
+        - dyanmodb:PutItem
+        - dyanmodb:UpdateItem
+        - dyanmodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*"
+
+  # To load environment variables externally
+  # rename env.example to env.yml and uncomment
+  # the following line. Also, make sure to not
+  # commit your env.yml.
+  #
+  #environment: ${file(env.yml):${self:provider.stage}}
+
+functions:
+  create:
+    handler: create.main
+    events:
+      - http:
+          path: chatrooms
+          method: post
+          cors: true
+          authorizer: aws_iam
+  get:
+    handler: get.main
+    events:
+      - http:
+          path: chatrooms/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  list:
+    handler: list.main
+    events:
+      - http:
+          path: chatrooms
+          method: get
+          cors: true
+          authorizer: aws_iam
