@@ -51,7 +51,7 @@ functions:
     handler: src/functions/list_chatrooms.main
     events:
       - http:
-          path: chatrooms/{id}
+          path: chatrooms
           method: get
           cors: true
           authorizer: aws_iam
