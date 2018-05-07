@@ -4,26 +4,9 @@ import WelcomeScreen from 'src/auth/welcome_screen';
 import HomeScreen from 'src/home_screen';
 // AWS config
 import Amplify from 'aws-amplify';
-import config from 'src/config';
+import AwsConfig from './aws-exports';
 
-Amplify.configure({
-	Auth: {
-		mandatorySignIn: true,
-		region: config.cognito.REGION,
-		userPoolId: config.cognito.USER_POOL_ID,
-		identityPoolId: config.cognito.IDENTITY_POOL_ID,
-		userPoolWebClientId: config.cognito.APP_CLIENT_ID
-	},
-	API: {
-		endpoints: [
-			{
-				name: 'chatroom',
-				endpoint: config.apiGateway.URL,
-				region: config.apiGateway.REGION,
-			}
-		]
-	}
-});
+Amplify.configure(AwsConfig);
 
 const AppStack = StackNavigator({
 	Home: HomeScreen
