@@ -1,12 +1,12 @@
-import * as dynamoDbLib from './lib/database';
-import { success, failure  } from './lib/response';
+import * as dynamoDbLib from '../lib/database';
+import { success, failure  } from '../lib/response';
 
 export async function main(event, context, callback) {
 	const params = {
 		TableName: 'chatroom',
 		KeyConditionExpression: 'user_id = :user_id',
 		ExpressionAttributeValues: {
-			':user_id': event.pathParameters.id,
+			':user_id': event.requestContext.identity.cognitoIdentityId,
 		}
 	};
 

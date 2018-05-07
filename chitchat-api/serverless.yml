@@ -40,15 +40,15 @@ provider:
 
 functions:
   create:
-    handler: create.main
+    handler: src/functions/create_chatroom.main
     events:
       - http:
           path: chatrooms
           method: post
           cors: true
           authorizer: aws_iam
-  list:
-    handler: list.main
+  list_chatrooms:
+    handler: src/functions/list_chatrooms.main
     events:
       - http:
           path: chatrooms/{id}
