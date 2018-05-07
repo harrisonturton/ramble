@@ -28,7 +28,7 @@ export default class ChatroomListScreen extends Component {
 	}
 	async fetchChatrooms() {
 		try {
-			chatrooms = await API.get('dev-chitchat-api', '/chatrooms/USER-1234');
+			chatrooms = await API.get('dev-chitchat-api', '/chatrooms');
 			this.setState(prevState => ({
 				isLoaded: true,
 				data: chatrooms
