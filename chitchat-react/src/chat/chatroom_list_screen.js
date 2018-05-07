@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ActivityIndicator, FlatList, Text, View, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { API } from 'aws-amplify';
+import ChatroomListItem from './chatroom_list_item';
 
 class HeaderRight extends Component {
 	render() {
@@ -41,10 +42,11 @@ export default class ChatroomListScreen extends Component {
 	}
 	renderItem({ item }) {
 		return (
-			<View style={styles.chatroomContainer}>
-				<Text style={styles.title}>{item['title']}</Text>
-				<Text style={styles.recentMessage}>{item['recent_message']}</Text>
-			</View>
+			<ChatroomListItem
+				chatroomId={item['chatroom_id']}
+				title={item['title']}
+				recentMessage={item['recent_message']}
+			/>
 		);
 	}
 	render() {
@@ -79,13 +81,4 @@ const styles = StyleSheet.create({
 		padding: 15,
 		backgroundColor: 'white'
 	},
-	chatroomContainer: {
-		marginTop: 15
-	},
-	title: {
-		fontSize: 18
-	},
-	recentMessage: {
-		opacity: 0.6
-	}
 });
