@@ -6,7 +6,7 @@ export async function main(event, context, callback) {
 		TableName: 'chatroom',
 		KeyConditionExpression: 'user_id = :user_id',
 		ExpressionAttributeValues: {
-			':user_id': event.requestContext.identity.cognitoIdentityId,
+			':user_id': event.pathParameters.id,
 		}
 	};
 

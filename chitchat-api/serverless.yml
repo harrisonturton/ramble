@@ -47,19 +47,11 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-  get:
-    handler: get.main
-    events:
-      - http:
-          path: chatrooms/{id}
-          method: get
-          cors: true
-          authorizer: aws_iam
   list:
     handler: list.main
     events:
       - http:
-          path: chatrooms
+          path: chatrooms/{id}
           method: get
           cors: true
           authorizer: aws_iam
