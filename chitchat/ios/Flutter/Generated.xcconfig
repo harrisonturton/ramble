@@ -1,0 +1,8 @@
+// This is a generated file; do not edit or check into version control.
+FLUTTER_ROOT=/Users/harrisonturton/Documents/software/installations/flutter
+FLUTTER_APPLICATION_PATH=/Users/harrisonturton/Documents/software/projects/chitchat/chitchat
+FLUTTER_TARGET=lib/main.dart
+FLUTTER_BUILD_MODE=debug
+FLUTTER_BUILD_DIR=build
+SYMROOT=${SOURCE_ROOT}/../build/ios
+FLUTTER_FRAMEWORK_DIR=/Users/harrisonturton/Documents/software/installations/flutter/bin/cache/artifacts/engine/ios
