@@ -1,0 +1,8 @@
+{
+	"body": "{\"chatroom\": {\"title\": \"RockyHyraxPosting\", \"recent_message\": \"What are y'all up to?\"}}",
+	"requestContext": {
+		"identity": {
+			"cognitoIdentityId": "USER-1234"
+		}
+	}
+}

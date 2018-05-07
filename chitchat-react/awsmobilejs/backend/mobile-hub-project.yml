@@ -1,0 +1,32 @@
+--- !com.amazonaws.mobilehub.v0.Project 
+features:
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      dev-chitchat-api: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          api-arn: 'arn:aws:execute-api:us-east-1:839518225781:0kkai0x7h8'
+          name: dev-chitchat-api
+          requires-signin: false
+          sdk-generation-stage-name: dev
+        paths:
+          /chatrooms: !com.amazonaws.mobilehub.v0.Function {}
+          '/chatrooms/{id}': !com.amazonaws.mobilehub.v0.Function {}
+  content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
+    attributes:
+      enabled: true
+      visibility: public-global
+    components:
+      release: !com.amazonaws.mobilehub.v0.Bucket {}
+  mobile-analytics: !com.amazonaws.mobilehub.v0.Pinpoint 
+    components:
+      analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}
+  sign-in: !com.amazonaws.mobilehub.v0.SignIn 
+    attributes:
+      enabled: true
+      optional-sign-in: false
+    components:
+      sign-in-user-pools: !com.amazonaws.mobilehub.v0.UserPoolsIdentityProvider 
+        attributes:
+          user-pool-id: us-east-1_IZp7Y2yir
+name: chitchat-react
+region: us-east-1
