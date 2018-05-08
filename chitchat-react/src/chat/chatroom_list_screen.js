@@ -59,6 +59,7 @@ export default class ChatroomListScreen extends Component {
 	renderItem({ item }) {
 		return (
 			<ChatroomListItem
+				navigation={this.props.navigation}
 				chatroomId={item['chatroom_id']}
 				title={item['title']}
 				recentMessage={item['recent_message']}
@@ -84,7 +85,7 @@ export default class ChatroomListScreen extends Component {
 					}
 					data={this.state.data}
 					keyExtractor={(item, index) => item['chatroom_id']}
-					renderItem={this.renderItem}
+					renderItem={this.renderItem.bind(this)}
 				/>
 			</View>
 		);

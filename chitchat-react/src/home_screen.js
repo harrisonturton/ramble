@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Image, Text, View, StyleSheet } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import ChatroomListScreen from 'src/chat/chatroom_list_screen';
+import ChatroomScreen from 'src/chat/chatroom_screen';
 import TabBarIcon from 'src/common/tab_bar_icon';
 
 class NewsfeedScreen extends Component {
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default HomeScreen = TabNavigator({
+const TabScreen = TabNavigator({
 	Newsfeed: NewsfeedScreen,
 	ChatroomList: ChatroomListScreen,
 }, {
@@ -64,3 +65,8 @@ export default HomeScreen = TabNavigator({
 		},
 	}
 });
+
+export default HomeScreen = StackNavigator({
+	Home: TabScreen,
+	Chatroom: ChatroomScreen
+}, { headerMode: 'none' });
