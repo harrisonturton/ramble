@@ -3,6 +3,7 @@ import { View, ActivityIndicator } from 'react-native';
 import { StackNavigator, SwitchNavigator } from 'react-navigation';
 import WelcomeScreen from 'src/auth/welcome_screen';
 import HomeScreen from 'src/home_screen';
+import ChatroomScreen from 'src/chat/chatroom_screen';
 // AWS config
 import Amplify from 'aws-amplify';
 import AwsConfig from './aws-exports';
@@ -11,7 +12,8 @@ import { Font } from 'expo';
 Amplify.configure(AwsConfig);
 
 const AppStack = StackNavigator({
-	Home: HomeScreen
+	Home: HomeScreen,
+	Chatroom: ChatroomScreen
 })
 
 const AuthStack = StackNavigator({

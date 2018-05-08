@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-const TabScreen = TabNavigator({
+export default HomeScreen = TabNavigator({
 	Newsfeed: NewsfeedScreen,
 	ChatroomList: ChatroomListScreen,
 }, {
@@ -65,8 +65,3 @@ const TabScreen = TabNavigator({
 		},
 	}
 });
-
-export default HomeScreen = StackNavigator({
-	Home: TabScreen,
-	Chatroom: ChatroomScreen
-}, { headerMode: 'none' });

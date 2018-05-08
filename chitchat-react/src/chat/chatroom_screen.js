@@ -4,6 +4,10 @@ import { StackNavigator } from 'react-navigation';
 import { API } from 'aws-amplify';
 
 export default class ChatroomScreen extends Component {
+	static navigationOptions = {
+		title: 'Chatroom',
+		headerMode: 'float'
+	};
 	constructor() {
 		super();
 		this.state = {
@@ -58,6 +62,12 @@ export default class ChatroomScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+	loadingContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'white'
+	},
 	container: {
 		flex: 1,
 		backgroundColor: 'white'
