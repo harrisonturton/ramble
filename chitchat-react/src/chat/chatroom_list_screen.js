@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, FlatList, Text, View, Image, StyleSheet } from 'react-native';
+import { RefreshControl, ActivityIndicator, FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { API } from 'aws-amplify';
 import ChatroomListItem from './chatroom_list_item';
@@ -32,8 +32,10 @@ export default class ChatroomListScreen extends Component {
 		super();
 		this.state = {
 			isLoaded: false,
-			data: []
+			data: [],
+			refreshing: false
 		};
+		this.fetchChatrooms = this.fetchChatrooms.bind(this);
 	}
 	componentWillMount() {
 		this.fetchChatrooms();
@@ -41,15 +43,18 @@ export default class ChatroomListScreen extends Component {
 	async fetchChatrooms() {
 		try {
 			chatrooms = await API.get('dev-chitchat-api', '/chatrooms');
-			this.setState(prevState => ({
+			this.setState(() => ({
 				isLoaded: true,
-				data: chatrooms
+				data: chatrooms,
 			}));
 			console.log(chatrooms);
 		} catch (err) {
 			console.log("Error fetching chatroom list");
 			console.log(err);
 		}
+		this.setState(() => ({
+			refreshing: false
+		}));
 	}
 	renderItem({ item }) {
 		return (
@@ -71,6 +76,12 @@ export default class ChatroomListScreen extends Component {
 		return (
 			<View style={styles.listContainer}>
 				<FlatList
+					refreshControl={
+						<RefreshControl
+							refreshing={this.state.refreshing}
+							onRefresh={this.fetchChatrooms}
+						/>
+					}
 					data={this.state.data}
 					keyExtractor={(item, index) => item['chatroom_id']}
 					renderItem={this.renderItem}
