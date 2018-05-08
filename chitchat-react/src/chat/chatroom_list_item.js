@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { API } from 'aws-amplify';
 
 export default class ChatroomListItem extends Component {
-	handleOpenChatroom = () => {
-		console.log("Opening chatroom " + this.props.chatroomId);
+	handleOpenChatroom = async () => {
+		try {
+			console.log("Opening chatroom " + this.props.chatroomId);
+			messages = await API.get('dev-chitchat-api', '/chatrooms/' + this.props.chatroomId);
+			console.log(messages);
+		} catch (err) {
+			console.log("Error fetching messages");
+			console.log(err);
+		}
 	}
 	render() {
 		return (

@@ -10,6 +10,7 @@ features:
           sdk-generation-stage-name: dev
         paths:
           /chatrooms: !com.amazonaws.mobilehub.v0.Function {}
+          '/chatrooms/{id}': !com.amazonaws.mobilehub.v0.Function {}
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
