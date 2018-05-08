@@ -19,10 +19,6 @@ class NewsfeedScreen extends Component {
 		return (
 			<View style={{ flex: 1, backgroundColor: 'white' }}>
 				<Text>Newsfeed!</Text>
-				<Image
-					style={styles.tabIcon}
-					source={require('assets/icons/bell_outline.png')}
-				/>
 			</View>
 		);
 	}
@@ -41,7 +37,13 @@ export default HomeScreen = TabNavigator({
 }, {
 	tabBarPosition: 'bottom',
 	navigationOptions: {
+		headerTitleStyle: {
+			fontFamily: 'Hind-Medium',
+			fontWeight: '400',
+			fontSize: 24
+		},
 		headerStyle: {
+			paddingTop: 15,
 			elevation: 0,
 			shadowOpacity: 0
 		}

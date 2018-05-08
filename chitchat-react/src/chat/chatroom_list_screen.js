@@ -8,7 +8,10 @@ import TabBarIcon from 'src/common/tab_bar_icon';
 class HeaderRight extends Component {
 	render() {
 		return (
-			<Text>Create new chat</Text>
+			<TabBarIcon
+				focused={true}
+				source={require('assets/icons/create.png')}
+			/>
 		);
 	}
 }

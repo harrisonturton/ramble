@@ -8,7 +8,8 @@ export default class TabBarIcon extends Component {
 				source={this.props.focused ? this.props.source : this.props.unfocusedSource}
 				style={[
 					this.props.style,
-					styles.icon
+					styles.icon,
+					this.props.focused ? styles.focusedTint : styles.unfocusedTint
 				]}
 			/>
 		);
@@ -17,9 +18,15 @@ export default class TabBarIcon extends Component {
 
 const styles = StyleSheet.create({
 	icon: {
+		padding: 5,
 		width: 30,
 		height: 30,
 		resizeMode: 'contain',
-		opacity: 0.8
 	},
+	focusedTint: {
+		tintColor: '#09D3CC'
+	},
+	unfocusedTint: {
+		tintColor: 'black'
+	}
 });
