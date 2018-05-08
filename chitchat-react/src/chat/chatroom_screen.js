@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ActivityIndicator, FlatList, Text, View, Image, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { API } from 'aws-amplify';
+import MessageBubble from './message_bubble';
 
 export default class ChatroomScreen extends Component {
 	static navigationOptions = {
@@ -35,10 +36,11 @@ export default class ChatroomScreen extends Component {
 	}
 	renderMessage({ item }) {
 		return (
-			<View style={styles.messageContainer}>
-				<Text style={styles.author}>{item['author']}</Text>
-				<Text style={styles.message}>{item['message']}</Text>
-			</View>
+			<MessageBubble
+				isHomeMessage={true}
+				author={item['author']}
+				message={item['message']}
+			/>
 		);
 	}
 	render() {
@@ -53,7 +55,7 @@ export default class ChatroomScreen extends Component {
 			<View style={styles.container}>
 				<FlatList
 					data={this.state.data}
-					keyExtractor={(item, index) => item['chatroom_id']}
+					keyExtractor={(item, index) => item['timestamp']}
 					renderItem={this.renderMessage}
 				/>
 			</View>
@@ -70,18 +72,6 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
-		backgroundColor: 'white'
+		backgroundColor: '#FAFAFA'
 	},
-	messageContainer: {
-		backgroundColor: 'blue',
-		borderRadius: 5.0,
-		margin: 15
-	},
-	author: {
-		fontSize: 14,
-	},
-	message: {
-		fontSize: 16,
-		color: 'white',
-	}
 });
