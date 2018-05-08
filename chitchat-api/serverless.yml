@@ -39,19 +39,19 @@ provider:
   #environment: ${file(env.yml):${self:provider.stage}}
 
 functions:
-  create:
-    handler: src/functions/create_chatroom.main
-    events:
-      - http:
-          path: chatrooms
-          method: post
-          cors: true
-          authorizer: aws_iam
   list_chatrooms:
     handler: src/functions/list_chatrooms.main
     events:
       - http:
           path: chatrooms
+          method: get
+          cors: true
+          authorizer: aws_iam
+  list_messages:
+    handler: src/functions/list_messages.main
+    events:
+      - http:
+          path: chatrooms/{id}
           method: get
           cors: true
           authorizer: aws_iam
