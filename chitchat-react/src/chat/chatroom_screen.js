@@ -37,7 +37,7 @@ export default class ChatroomScreen extends Component {
 	renderMessage({ item }) {
 		return (
 			<MessageBubble
-				isHomeMessage={true}
+				isHomeMessage={item['author'] == 'Harrison Turton'}
 				author={item['author']}
 				message={item['message']}
 			/>
